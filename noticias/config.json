@@ -1,5 +1,5 @@
 {
- "_doc": "Parâmetros da aba Notícias de Demonstração. Gerado por tools/configurar.py a partir de cliente.json; ajustes finos podem ser feitos aqui.",
+ "_doc": "Parâmetros da aba Notícias de Timeline. Gerado por tools/configurar.py a partir de cliente.json; ajustes finos podem ser feitos aqui.",
  "editions": [
   "06:00",
   "12:00",
@@ -26,9 +26,9 @@
   },
   {
    "key": "peso_voce",
-   "label": "Peso para Rádio Demonstração",
+   "label": "Peso para TL TV",
    "weight": 7,
-   "how": "Aderência à linha editorial de Rádio Demonstração e aos temas prioritários (política nacional, STF e TSE, eleição, economia no bolso, segurança pública, corrupção, imprensa, a região de cobertura): forte = 10; média = 6; fraca = 3."
+   "how": "Aderência à linha editorial de TL TV e aos temas prioritários (política nacional, STF e TSE, eleição, economia no bolso, segurança pública, corrupção, imprensa, a região de cobertura): forte = 10; média = 6; fraca = 3."
   }
  ],
  "score_formula": "nota final = soma(nota do critério x peso) / soma dos pesos, de 0 a 10",
@@ -71,8 +71,8 @@
   },
   {
    "key": "regiao",
-   "label": "Minas Gerais",
-   "note": "Minas Gerais: governo do estado, Assembleia, prefeitura da capital, câmara municipal, segurança, transporte, economia e interior da região de cobertura do veículo",
+   "label": "Rio de Janeiro",
+   "note": "Rio de Janeiro: governo do estado, Assembleia, prefeitura da capital, câmara municipal, segurança, transporte, economia e interior da região de cobertura do veículo",
    "min_items": 3,
    "min_outlets": 1
   },
@@ -281,6 +281,12 @@
    "tier": 3
   },
   {
+   "name": "Estado de Minas",
+   "url": "https://www.em.com.br",
+   "camp": "regional",
+   "tier": 3
+  },
+  {
    "name": "Yahoo Notícias",
    "url": "https://br.noticias.yahoo.com",
    "camp": "centro",
@@ -303,6 +309,12 @@
    "url": "https://veja.abril.com.br",
    "camp": "centro",
    "tier": 2
+  },
+  {
+   "name": "O Tempo",
+   "url": "https://www.otempo.com.br",
+   "camp": "regional",
+   "tier": 3
   },
   {
    "name": "Diário do Nordeste",
@@ -413,26 +425,26 @@
    "tier": 3
   },
   {
-   "name": "O Tempo",
-   "url": "https://www.otempo.com.br",
+   "name": "O Dia",
+   "url": "https://odia.ig.com.br",
    "camp": "regional",
    "tier": 2
   },
   {
-   "name": "Estado de Minas",
-   "url": "https://www.em.com.br",
+   "name": "Extra",
+   "url": "https://extra.globo.com",
    "camp": "regional",
    "tier": 2
   },
   {
-   "name": "Itatiaia",
-   "url": "https://www.itatiaia.com.br",
+   "name": "Diário do Rio",
+   "url": "https://diariodorio.com",
    "camp": "regional",
    "tier": 2
   },
   {
-   "name": "Hoje em Dia",
-   "url": "https://www.hojeemdia.com.br",
+   "name": "Meia Hora",
+   "url": "https://www.meiahora.com.br",
    "camp": "regional",
    "tier": 3
   }

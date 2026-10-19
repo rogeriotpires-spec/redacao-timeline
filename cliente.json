@@ -1,14 +1,11 @@
 {
   "_doc": "Configuração do cliente. O administrador edita pela tela Configurações do painel; a rotina 'Aplicar configurações' recalcula o resto e publica.",
   "produto": "Redação Inteligente",
-  "cliente": "Demonstração",
-  "veiculo": "Rádio Demonstração",
+  "cliente": "Timeline",
+  "veiculo": "TL TV",
   "programa": {
-    "nome": "Jornal da Manhã",
-    "apresentadores": [
-      "Apresentador 1",
-      "Apresentador 2"
-    ],
+    "nome": "Conversa Timeline",
+    "apresentadores": [],
     "dias": [
       1,
       2,
@@ -60,43 +57,43 @@
     "Português do Brasil, frases curtas, sem travessão."
   ],
   "regiao": {
-    "nome": "Minas Gerais",
-    "rotulo_bloco": "Minas Gerais",
+    "nome": "Rio de Janeiro",
+    "rotulo_bloco": "Rio de Janeiro",
     "buscas": [
-      "\"governo de Minas\" OR Zema OR ALMG OR \"Assembleia de Minas\"",
-      "\"Prefeitura de Belo Horizonte\" OR \"Câmara de BH\" OR \"Belo Horizonte\"",
-      "\"Minas Gerais\" polícia OR operação OR segurança",
-      "Contagem OR Betim OR \"Juiz de Fora\" OR Uberlândia"
+      "\"governo do Rio\" OR \"Cláudio Castro\" OR Alerj",
+      "\"Prefeitura do Rio\" OR \"Câmara do Rio\" OR \"Eduardo Paes\"",
+      "\"Rio de Janeiro\" polícia OR operação OR segurança",
+      "Niterói OR \"Baixada Fluminense\" OR \"São Gonçalo\""
     ],
     "portais": [
       {
-        "name": "O Tempo",
-        "url": "https://www.otempo.com.br",
+        "name": "O Dia",
+        "url": "https://odia.ig.com.br",
         "camp": "regional",
         "tier": 2
       },
       {
-        "name": "Estado de Minas",
-        "url": "https://www.em.com.br",
+        "name": "Extra",
+        "url": "https://extra.globo.com",
         "camp": "regional",
         "tier": 2
       },
       {
-        "name": "Itatiaia",
-        "url": "https://www.itatiaia.com.br",
+        "name": "Diário do Rio",
+        "url": "https://diariodorio.com",
         "camp": "regional",
         "tier": 2
       },
       {
-        "name": "Hoje em Dia",
-        "url": "https://www.hojeemdia.com.br",
+        "name": "Meia Hora",
+        "url": "https://www.meiahora.com.br",
         "camp": "regional",
         "tier": 3
       }
     ]
   },
   "esportes_buscas": [
-    "Atlético-MG OR Cruzeiro OR América-MG",
+    "Flamengo OR Fluminense OR Vasco OR Botafogo",
     "seleção brasileira OR CBF OR Brasileirão",
     "esporte olímpico OR vôlei OR Fórmula 1 OR tênis"
   ],

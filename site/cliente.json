@@ -1,12 +1,9 @@
 {
  "produto": "Redação Inteligente",
- "cliente": "Demonstração",
- "veiculo": "Rádio Demonstração",
- "programa": "Jornal da Manhã",
- "apresentadores": [
-  "Apresentador 1",
-  "Apresentador 2"
- ],
+ "cliente": "Timeline",
+ "veiculo": "TL TV",
+ "programa": "Conversa Timeline",
+ "apresentadores": [],
  "horario": "07:00",
  "dias": [
   1,
@@ -31,5 +28,5 @@
   "sobre_destaque": "#091936"
  },
  "logo": null,
- "versao": "81ed2195d8"
+ "versao": "25a78fd576"
 }

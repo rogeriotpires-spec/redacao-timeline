@@ -1,11 +1,8 @@
 {
- "_doc": "Parâmetros da pauta do programa Jornal da Manhã. Gerado por tools/configurar.py a partir de cliente.json.",
- "programa": "Jornal da Manhã",
- "veiculo": "Rádio Demonstração",
- "apresentadores": [
-  "Apresentador 1",
-  "Apresentador 2"
- ],
+ "_doc": "Parâmetros da pauta do programa Conversa Timeline. Gerado por tools/configurar.py a partir de cliente.json.",
+ "programa": "Conversa Timeline",
+ "veiculo": "TL TV",
+ "apresentadores": [],
  "horario": "07:00",
  "itens": 6,
  "linhas_resumo": 5,
@@ -26,7 +23,7 @@
   "STF e instituições",
   "Economia",
   "Segurança pública",
-  "Minas Gerais",
+  "Rio de Janeiro",
   "Internacional",
   "Educação"
  ],
