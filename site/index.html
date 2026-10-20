@@ -309,18 +309,19 @@ const label=id=>{const [y,m,d,h]=id.split("-");return`${d}/${m} ${h}`};
 function seal(text,cls){return`<span class="pill ${cls}">${text}</span>`}
 function scoreColor(v){return v>=8?"var(--good)":v>=6?"var(--warn)":"var(--muted)"}
 function card(it,rank){
+  const NP=naPauta(it);
   const segL=(CFG.segments.find(s=>s.key===it.segment)||{}).label||it.segment;
   const crit=CFG.criteria.map(c=>{const v=it.scores?.[c.key];return`<div class="crit" title="${esc(c.how)}"><span>${esc(c.label)} <small>peso ${c.weight}</small></span><div class="cbar"><i style="width:${(v??0)*10}%"></i></div><b>${v??"–"}</b></div>`}).join("");
   const outs=(it.outlets||[]).map(o=>{const c=CAMP[o.camp]||[o.camp,"var(--muted)"];return`<a class="out" href="${esc(o.url)}" target="_blank" rel="noopener" title="${esc(c[0])}${o.position?" · "+esc(POS[o.position]||o.position):""}"><i style="background:${c[1]}"></i>${esc(o.name)}${o.position==="manchete"?" ★":""}</a>`}).join("");
   const body=`Pedido gerado pela página de Notícias.\n\nEdição: ${ED.id}\nItem: ${it.id}\nTítulo: ${it.title}\nBloco: ${segL}\n\nResumo:\n${it.summary}\n\nFontes:\n${(it.outlets||[]).map(o=>`- ${o.name}: ${o.url}`).join("\n")}\n\nFormato desejado (opcional, apague o que não quiser): imagem, reel, carrossel, stories\nObservação (opcional):\n`;
   BODIES[it.id]=body;
   return`<article class="news" id="n-${esc(it.id)}">
-    <div class="news-h"><span class="rank">${rank}</span><div style="flex:1;min-width:0"><div class="pills">${seal(esc(segL),"neutral")}${(ED.x_trends||[]).some(x=>x.item_id===it.id)?`<a class="pill info" href="#xtr" style="text-decoration:none" title="Assunto em alta no X agora">Em alta no X</a>`:""}${it.asymmetry?.flag?seal("Assimetria de cobertura","bad"):""}${DONEP[it.title]?`<a class="pill good" href="pauta.html#${DONEP[it.title]}" style="text-decoration:none">Na pauta do programa ✓</a>`:""}</div><h3>${novPill(it)}${esc(it.title)}</h3></div><div class="score" style="color:${scoreColor(it.score)}">${(it.score??0).toFixed(1).replace(".",",")}<small>nota</small></div></div>
+    <div class="news-h"><span class="rank">${rank}</span><div style="flex:1;min-width:0"><div class="pills">${seal(esc(segL),"neutral")}${(ED.x_trends||[]).some(x=>x.item_id===it.id)?`<a class="pill info" href="#xtr" style="text-decoration:none" title="Assunto em alta no X agora">Em alta no X</a>`:""}${it.asymmetry?.flag?seal("Assimetria de cobertura","bad"):""}${NP?`<a class="pill ${NP.forte?"good":"info"}" href="pauta.html#${NP.dia}" style="text-decoration:none" title="Item ${NP.n} da pauta: ${esc(NP.titulo)}">${NP.forte?`✓ Na pauta de ${dBR(NP.dia)} · item ${NP.n}`:`Ligada ao item ${NP.n} da pauta`}</a>`:""}</div><h3>${novPill(it)}${esc(it.title)}</h3></div><div class="score" style="color:${scoreColor(it.score)}">${(it.score??0).toFixed(1).replace(".",",")}<small>nota</small></div></div>
     <p class="sum">${esc(it.summary)}</p>
     ${it.asymmetry?.flag?`<div class="note"><b>Assimetria:</b> ${esc(it.asymmetry.note||"")}</div>`:""}
     <div class="outs"><span class="small-n">${(it.outlets||[]).length} portais:</span>${outs}</div>
     <details><summary>Como a nota foi calculada</summary><div class="crits">${crit}</div></details>
-    <div class="acts">${DONEP[it.title]?`<a class="btn ghost" href="pauta.html#${DONEP[it.title]}">Ver na pauta do programa</a>`:`<button class="btn" type="button" data-prog="${esc(it.id)}" title="Entra como primeiro item da pauta do programa de ${dBR(progDay())}">📺 Levar para a pauta do programa</button>`}<span class="small-n pst"></span></div>
+    <div class="acts">${NP&&NP.forte?`<a class="btn ghost" href="pauta.html#${NP.dia}">Ver na pauta do programa</a>`:`<button class="btn" type="button" data-prog="${esc(it.id)}" title="Entra como primeiro item da pauta do programa de ${dBR(progDay())}">📺 Levar para a pauta do programa</button>`}<span class="small-n pst"></span></div>
   </article>`;
 }
 function novPill(it){const n=NV[it.id];if(!n)return"";
@@ -351,6 +352,7 @@ function fbarSetup(){const nav=document.querySelector("nav"),fb=$("#fbar");const
 function afterFilter(){const fb=$("#fbar");if(fb.classList.contains("stuck")){const nh=document.querySelector("nav")?.offsetHeight||0;scrollTo({top:$("#list").getBoundingClientRect().top+scrollY-nh-fb.offsetHeight-6})}
 }
 function render(){
+  if(ED&&PAUTA){const n=(ED.items||[]).filter(i=>(naPauta(i)||{}).forte).length,h=$("#headline");let e=$("#napauta");if(!e&&h){e=document.createElement("p");e.id="napauta";e.className="small-n";e.style.margin="8px 0 0";h.appendChild(e)}if(e)e.innerHTML=n?`✓ ${n} ${n>1?"notícias desta edição já estão":"notícia desta edição já está"} na <a href="pauta.html#${PAUTA.dia}">pauta de ${dBR(PAUTA.dia)}</a>.`:`Nenhuma notícia desta edição está na <a href="pauta.html#${PAUTA.dia}">pauta de ${dBR(PAUTA.dia)}</a> ainda.`}
   const items=ED.items||[];
   const segs=[{key:"top",label:"Destaques"},...CFG.segments];
   const SHORT={"Política nacional":"Política","Internacional":"Internac.","Segurança pública":"Segurança","Rio de Janeiro":"Rio","Ciência e tecnologia":"Ciência"};
@@ -372,6 +374,33 @@ function method(){
   <div class="ag"><b>Selo</b><span><b>Assimetria de cobertura.</b> ${esc(CFG.asymmetry.rule)}</span></div>
   <p class="def">Portais monitorados (${CFG.outlets.length}): ${CFG.outlets.map(o=>`${esc(o.name)} <span class="small-n">(${esc(CAMP[o.camp]?.[0]||o.camp)})</span>`).join(", ")}. ${CFG.outlets.filter(o=>o.fetch===false).map(o=>esc(o.name)+" bloqueia leitura automática: entra só quando aparece na busca ou é citado por outro portal, e a ausência dele não pesa na nota nem na assimetria").join(". ")}${CFG.outlets.some(o=>o.fetch===false)?". ":""}A classificação por campo editorial segue a percepção corrente e pode ser ajustada no arquivo de configuração.</p></div>`;
 }
+/* Pauta vigente: a do próximo programa (ou a mais recente antes dele). Uma notícia "está na pauta" quando
+   foi pedida como item avulso, quando compartilha matéria (link) com um item, ou quando o título é o mesmo fato. */
+let PAUTA=null;
+const urlN=u=>{try{const x=new URL(u);return (x.hostname.replace(/^www\./,"")+x.pathname.replace(/\/$/,"")).toLowerCase()}catch(e){return ""}};
+async function carregaPauta(){
+  try{const ix=await fetch("programa/index.json?"+Date.now()).then(r=>r.json());const dias=(ix.days||[]).sort();if(!dias.length)return;
+    const alvo=Painel.progDay(),d=dias.filter(x=>x<=alvo).pop()||dias[dias.length-1];
+    const p=await fetch(`programa/${d}.json?`+Date.now()).then(r=>r.json());
+    PAUTA={dia:d,itens:(p.itens||[]).map((x,i)=>({n:i+1,titulo:x.titulo,ped:String(x.pedido||""),t:NOV.norm((x.titulo||"")+" "+(x.subtitulo||"")),r:NOV.norm((x.titulo||"")+" "+(x.resumo||"")),urls:new Set((x.fontes||[]).map(f=>urlN(f.url)).filter(Boolean))}))};
+    if(ED)render()}catch(e){}
+}
+function naPauta(it){
+  if(!PAUTA)return null;
+  const tt=NOV.norm(it.title),ts=NOV.norm(it.title+" "+String(it.summary||"").slice(0,400)),us=new Set((it.outlets||[]).map(o=>urlN(o.url)).filter(Boolean));
+  const com=(a,b)=>{let n=0;a.forEach(w=>{if(b.has(w))n++});return n};
+  let rel=null;
+  for(const x of PAUTA.itens){
+    // mesmo fato: pedido como item avulso, ou título equivalente
+    if(x.ped&&(x.ped.includes(it.title)||x.ped.includes(it.id)))return {...x,dia:PAUTA.dia,forte:true};
+    const ct=com(tt,x.t),url=[...us].some(u=>x.urls.has(u));
+    if((NOV.sim(tt,x.t)>=0.4&&ct>=3)||(url&&ct>=3))return {...x,dia:PAUTA.dia,forte:true};
+    // assunto ligado: mesma matéria entre as fontes, ou resumo muito parecido
+    if(!rel&&url)rel=x;
+    if(!rel&&NOV.sim(ts,x.r)>=0.5&&com(ts,x.r)>=6)rel=x;
+  }
+  return rel?{...rel,dia:PAUTA.dia,forte:false}:null;
+}
 async function load(id){
   CUR=id;$("#ed").value=id;const i=EDS.indexOf(id);$("#prev").disabled=i<=0;$("#next").disabled=i>=EDS.length-1;
   try{ED=await fetch(`noticias/${id}.json?`+Date.now()).then(r=>r.json());ED.id=id;
@@ -384,7 +413,7 @@ async function load(id){
 }
 Painel.pronto.then(()=>Promise.all([fetch("noticias/config.json?"+Date.now()).then(r=>r.json()),fetch("noticias/index.json?"+Date.now()).then(r=>r.ok?r.json():{editions:[]}).catch(()=>({editions:[]}))]).then(([c,ix])=>{
   CFG=c;method();fbarSetup();
-  fetch("programa/index.json?"+Date.now()).then(r=>r.json()).then(ix=>Promise.all((ix.days||[]).sort().slice(-3).map(d=>fetch(`programa/${d}.json?`+Date.now()).then(r=>r.json()).then(p=>(p.itens||[]).forEach(x=>{if(x.avulsa&&x.pedido)(ED&&ED.items||[]).forEach(it=>{if(String(x.pedido).includes(it.title))DONEP[it.title]=d})})).catch(()=>{})))).then(()=>{if(ED&&Object.keys(DONEP).length)render()}).catch(()=>{});
+  carregaPauta();
   EDS=(ix.editions||[]).sort();
   if(!EDS.length){$("#updated").textContent="A primeira edição sai no próximo horário ("+((Painel.cliente&&Painel.cliente.edicoes)||[]).join(", ")+").";$("#list").innerHTML=`<div class="empty">Nenhuma edição publicada ainda.</div>`;return}
   $("#ed").innerHTML=EDS.slice().reverse().map(e=>`<option value="${e}">${label(e)}</option>`).join("");
