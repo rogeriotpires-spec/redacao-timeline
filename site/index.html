@@ -320,7 +320,7 @@ function card(it,rank){
     ${it.asymmetry?.flag?`<div class="note"><b>Assimetria:</b> ${esc(it.asymmetry.note||"")}</div>`:""}
     <div class="outs"><span class="small-n">${(it.outlets||[]).length} portais:</span>${outs}</div>
     <details><summary>Como a nota foi calculada</summary><div class="crits">${crit}</div></details>
-    <div class="acts">${DONEP[it.title]?`<a class="btn ghost" href="pauta.html#${DONEP[it.title]}">Ver na pauta do programa</a>`:`<button class="btn" type="button" data-prog="${esc(it.id)}" title="Entra como primeiro item da pauta do programa de ${dBR(progDay())}">📺 Levar para a pauta do programa</button>`}${done?`<a class="btn ghost" href="pautas-nova.html#sob-demanda">Ver post do Instagram</a>`:(Painel.API?`<button class="btn ghost" type="button" data-pauta="${esc(it.id)}" title="Gera opções de post na aba Conteúdo do Instagram, seção Sob demanda">📲 Post do Instagram</button>`:`<a class="btn ghost" href="${issue}" target="_blank" rel="noopener">📲 Post do Instagram</a>`)}<span class="small-n pst"></span></div>
+    <div class="acts">${DONEP[it.title]?`<a class="btn ghost" href="pauta.html#${DONEP[it.title]}">Ver na pauta do programa</a>`:`<button class="btn" type="button" data-prog="${esc(it.id)}" title="Entra como primeiro item da pauta do programa de ${dBR(progDay())}">📺 Levar para a pauta do programa</button>`}<span class="small-n pst"></span></div>
   </article>`;
 }
 function novPill(it){const n=NV[it.id];if(!n)return"";
@@ -380,7 +380,7 @@ async function load(id){
     $("#updated").textContent=$("#ed-sub").textContent;
     $("#headline").innerHTML=`<p style="font-size:16px;font-weight:600;margin:0;line-height:1.45">${esc(ED.headline||"")}</p>`;
     NV={};renderX();render();await novidade();if(CUR===id)render();history.replaceState(null,"","#"+id)}
-  catch(e){$("#list").innerHTML=`<div class="empty">Não foi possível carregar a edição ${esc(id)}.</div>`}
+  catch(e){console.error("edicao",e);$("#list").innerHTML=`<div class="empty">Não foi possível carregar a edição ${esc(id)}.</div>`}
 }
 Painel.pronto.then(()=>Promise.all([fetch("noticias/config.json?"+Date.now()).then(r=>r.json()),fetch("noticias/index.json?"+Date.now()).then(r=>r.ok?r.json():{editions:[]}).catch(()=>({editions:[]}))]).then(([c,ix])=>{
   CFG=c;method();fbarSetup();
