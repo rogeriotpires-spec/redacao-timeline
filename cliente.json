@@ -69,28 +69,10 @@
     ],
     "portais": [
       {
-        "name": "Globo",
-        "url": "https://g1.com",
-        "camp": "regional",
-        "tier": 2
-      },
-      {
         "name": "Extra",
         "url": "https://extra.globo.com",
         "camp": "regional",
         "tier": 2
-      },
-      {
-        "name": "Revista Veja",
-        "url": "https://veja.abril.com.br",
-        "camp": "regional",
-        "tier": 2
-      },
-      {
-        "name": "G1",
-        "url": "https://www.g1.globo.com",
-        "camp": "regional",
-        "tier": 3
       }
     ]
   },
