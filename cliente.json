@@ -80,14 +80,14 @@
         "tier": 2
       },
       {
-        "name": "Diário do Rio",
-        "url": "https://diariodorio.com",
+        "name": "Revista Veja",
+        "url": "https://veja.abril.com.br",
         "camp": "regional",
         "tier": 2
       },
       {
-        "name": "Meia Hora",
-        "url": "https://www.meiahora.com.br",
+        "name": "G1",
+        "url": "https://www.g1.globo.com",
         "camp": "regional",
         "tier": 3
       }
