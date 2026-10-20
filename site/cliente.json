@@ -18,7 +18,7 @@
  "edicoes": [
   "06h",
   "12h",
-  "19h"
+  "18h"
  ],
  "cobertura": "nacional",
  "regiao": null,
@@ -31,5 +31,5 @@
   "sobre_destaque": "#2b1307"
  },
  "logo": "marca/logo.png",
- "versao": "514a4d0d34"
+ "versao": "afe3895f91"
 }

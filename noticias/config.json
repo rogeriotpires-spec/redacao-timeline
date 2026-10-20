@@ -3,7 +3,7 @@
  "editions": [
   "06:00",
   "12:00",
-  "19:00"
+  "18:00"
  ],
  "criteria": [
   {
@@ -416,12 +416,6 @@
    "url": "https://opopular.com.br",
    "camp": "regional",
    "tier": 3
-  },
-  {
-   "name": "Extra",
-   "url": "https://extra.globo.com",
-   "camp": "outros",
-   "tier": 2
   }
  ],
  "_doc_tiers": "tier 1: abrir a home em toda edição; tier 2: abrir a home ou buscar por site em toda edição; tier 3 (regionais e agregadores): buscar por site (WebSearch site:dominio) os fatos do dia e abrir só quando houver matéria relevante, sobretudo fatos do estado do veículo.",
