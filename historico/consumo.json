@@ -1,0 +1,37 @@
+{
+ "execucoes": [
+  {
+   "id": "39421649419",
+   "rotina": "avulso",
+   "origem": "manual",
+   "usuario": "administrador",
+   "inicio": "2026-10-20T09:21:50-03:00",
+   "fim": "2026-10-20T09:23:20-03:00",
+   "duracao_s": 90,
+   "resultado": "sucesso",
+   "artefato": {
+    "tipo": "Item avulso na pauta",
+    "id": "2026-10-20",
+    "link": "/pauta.html#2026-10-20",
+    "detalhe": "Campanha de Flávio propõe transição de dois anos para quem deixar o Bolsa Família com emprego https://www.cnnbrasil.com.br/eleicoes/bolsa-familia-tera-regra-de-"
+   },
+   "modelo_escolhido": "claude-sonnet-5-5",
+   "custo_usd": 0.1438,
+   "duracao_claude_s": 70,
+   "turnos": 11,
+   "tokens": {
+    "entrada": 18,
+    "saida": 4540,
+    "cache_gravado": 23948,
+    "cache_lido": 234351
+   },
+   "buscas_web": 0,
+   "modelos": [
+    "claude-sonnet-5-5",
+    "claude-haiku-5-5"
+   ],
+   "execucao_url": "https://github.com/rogeriotpires-spec/redacao-timeline/actions/runs/39421649419"
+  }
+ ],
+ "atualizado": "2026-10-20T09:23:20-03:00"
+}
