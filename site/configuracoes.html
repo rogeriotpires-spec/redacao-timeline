@@ -35,8 +35,22 @@ textarea{min-height:92px;resize:vertical;line-height:1.45}
 .chips input:focus-visible+span{outline:2px solid var(--marca,#0b3d91);outline-offset:2px}
 .btn{font:700 14px Inter,sans-serif;padding:10px 14px;border:0;border-radius:10px;background:var(--text);color:var(--surface);cursor:pointer}
 .btn.ghost{background:var(--surface);color:var(--text);border:1px solid var(--border)}.btn.sm{padding:6px 10px;font-size:12.5px;font-weight:600}
-.portal{display:grid;grid-template-columns:1.1fr 2fr 110px auto;gap:8px;margin-bottom:8px;align-items:center}
-@media (max-width:640px){.portal{grid-template-columns:1fr 1fr}.portal .u{grid-column:1/-1;order:-1}}
+.cob{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:560px){.cob{grid-template-columns:1fr}}
+.cobop{position:relative;cursor:pointer}
+.cobop input{position:absolute;opacity:0}
+.cobop span{display:flex;flex-direction:column;gap:3px;border:2px solid var(--border);border-radius:14px;padding:14px;background:var(--bg);height:100%}
+.cobop b{font-size:15px;color:var(--text)}.cobop small{font-weight:400;color:var(--muted);font-size:13px;line-height:1.4}
+.cobop input:checked+span{border-color:var(--text);background:var(--surface)}
+.cobop input:focus-visible+span{outline:2px solid var(--marca,#0b3d91);outline-offset:2px}
+.sub-box{margin-top:14px;padding-top:14px;border-top:1px dashed var(--border)}
+details.base summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--text-2)}
+details.base p{margin:8px 0 0;line-height:1.6}
+.portal{display:grid;grid-template-columns:1fr 1.4fr 1fr auto;gap:10px;align-items:end;padding:12px;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;background:var(--bg)}
+.portal input,.portal select{background:var(--surface)}
+.portal .rm{font:600 13px Inter,sans-serif;background:none;border:0;color:var(--bad);cursor:pointer;padding:10px 4px}
+.portal .dup{grid-column:1/-1;margin:0;font-size:12.5px;color:var(--warn,#9a5b00)}
+@media (max-width:640px){.portal{grid-template-columns:1fr 1fr}.portal label:nth-child(1),.portal label:nth-child(2){grid-column:1/-1}.portal .rm{justify-self:end}}
 .logo-box{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:start}
 @media (max-width:640px){.logo-box{grid-template-columns:1fr}}
 .drop{border:2px dashed var(--border);border-radius:14px;min-height:150px;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;cursor:pointer;background:var(--surface-2);color:var(--muted);font-size:13px;position:relative}
@@ -57,6 +71,7 @@ textarea{min-height:92px;resize:vertical;line-height:1.45}
 .barra{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--border);z-index:30}
 .barra-in{max-width:980px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
 .msg{font-size:13.5px;flex:1;min-width:0}.msg.ok{color:var(--good)}.msg.err{color:var(--bad)}
+.small{font-size:13px;color:var(--muted)}
 .carregando{color:var(--muted);padding:30px 0}
 </style>
 <link rel="stylesheet" href="estilo.css">
@@ -117,19 +132,30 @@ textarea{min-height:92px;resize:vertical;line-height:1.45}
     </section>
 
     <section class="card">
-      <h2>Região de cobertura</h2>
-      <p class="hint">Os portais e as buscas da sua região entram em toda edição, ao lado dos grandes portais nacionais.</p>
-      <div class="g2">
-        <label>Região<input name="r_nome" maxlength="60" placeholder="Ex.: Minas Gerais"></label>
-        <label>Nome do bloco na pauta<input name="r_rotulo" maxlength="40" placeholder="Ex.: Minas Gerais"></label>
+      <h2>Cobertura</h2>
+      <p class="hint">Define se o painel dá destaque a uma região ou cobre o Brasil como um todo.</p>
+      <div class="cob" role="radiogroup" aria-label="Cobertura">
+        <label class="cobop"><input type="radio" name="cobertura" value="nacional"><span><b>🇧🇷 Nacional</b><small>O Brasil todo, sem bloco regional. Para veículos de alcance nacional.</small></span></label>
+        <label class="cobop"><input type="radio" name="cobertura" value="regional"><span><b>📍 Regional</b><small>Um estado ou cidade ganha bloco próprio nas notícias e na pauta.</small></span></label>
       </div>
-      <div style="margin:14px 0 8px;font-size:12.5px;font-weight:600;color:var(--text-2)">Portais da região</div>
+      <div id="regBox" class="sub-box">
+        <div class="g2">
+          <label>Estado ou cidade<input name="r_nome" maxlength="60" placeholder="Ex.: Minas Gerais"></label>
+          <label>Nome do bloco<input name="r_rotulo" maxlength="40" placeholder="Ex.: Minas Gerais"></label>
+        </div>
+        <label class="full" style="margin-top:12px">Buscas da região <small>uma por linha. Ex.: "Prefeitura de Belo Horizonte" OR "Câmara de BH"</small><textarea name="r_buscas" rows="3"></textarea></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Portais</h2>
+      <p class="hint" id="baseTxt">Os principais portais do país já são lidos em toda edição.</p>
+      <details class="base"><summary>Ver a lista dos portais já monitorados</summary><p id="baseLista" class="small"></p></details>
+      <div style="margin:16px 0 4px;font-size:14px;font-weight:700">Portais extras <span style="font-weight:400;color:var(--muted)">(opcional)</span></div>
+      <p class="hint" style="margin-bottom:10px">Inclua só o que não está na lista acima: portais regionais, de nicho ou da concorrência.</p>
       <div id="portais"></div>
-      <button type="button" class="btn ghost sm" id="addPortal">+ Portal</button>
-      <div class="g2" style="margin-top:14px">
-        <label>Buscas da região <small>uma por linha, ex.: "Prefeitura de Belo Horizonte" OR "Câmara de BH"</small><textarea name="r_buscas" rows="4"></textarea></label>
-        <label>Buscas de esporte <small>uma por linha, ex.: Atlético-MG OR Cruzeiro</small><textarea name="esportes" rows="4"></textarea></label>
-      </div>
+      <button type="button" class="btn ghost sm" id="addPortal">+ Adicionar portal</button>
+      <label class="full" style="margin-top:16px">Buscas de esporte <small>uma por linha. Ex.: Flamengo OR Corinthians OR Palmeiras</small><textarea name="esportes" rows="3"></textarea></label>
     </section>
 
     <section class="card">
@@ -150,9 +176,17 @@ let CFG=null,SHA=null,LOGO=null,PROPS=[],ESC=0,COR2=null;
 const linhas=a=>(a||[]).join("\n"),deLinhas=t=>String(t||"").split("\n").map(x=>x.trim()).filter(Boolean);
 function msg(t,c){const m=$("#msg");m.className="msg"+(c?" "+c:"");m.textContent=t}
 
+const dom=u=>{try{return new URL(/^https?:/.test(u)?u:"https://"+u).hostname.replace(/^www\./,"")}catch(e){return ""}};
+let BASE=[];
 function portal(p={}){const d=document.createElement("div");d.className="portal";
-  d.innerHTML=`<input class="n" placeholder="Nome" maxlength="60" value="${esc(p.name||"")}" aria-label="Nome do portal"><input class="u" placeholder="https://..." maxlength="200" value="${esc(p.url||"")}" aria-label="Endereço do portal"><select class="t" aria-label="Peso"><option value="2">Ler sempre</option><option value="3">Só buscar</option></select><button type="button" class="btn ghost sm" aria-label="Remover portal">✕</button>`;
-  d.querySelector(".t").value=String(p.tier||2);d.querySelector("button").onclick=()=>d.remove();$("#portais").append(d)}
+  d.innerHTML=`<label>Nome<input class="n" placeholder="Ex.: O Tempo" maxlength="60" value="${esc(p.name||"")}"></label>
+    <label>Endereço<input class="u" placeholder="otempo.com.br" maxlength="200" inputmode="url" autocapitalize="none" value="${esc(p.url||"")}"></label>
+    <label>Leitura<select class="t"><option value="2">Em toda edição</option><option value="3">Só quando tiver notícia</option></select></label>
+    <button type="button" class="rm" aria-label="Remover portal">Remover</button><p class="dup" hidden></p>`;
+  d.querySelector(".t").value=String(p.tier||2);d.querySelector(".rm").onclick=()=>d.remove();
+  const u=d.querySelector(".u"),dp=d.querySelector(".dup");u.oninput=()=>{const b=BASE.find(o=>dom(o.url)===dom(u.value));dp.hidden=!b;dp.textContent=b?`${b.name} já é monitorado. Pode remover este.`:""};u.oninput();
+  $("#portais").append(d)}
+function cobertura(){const v=(F.querySelector("[name=cobertura]:checked")||{}).value;$("#regBox").hidden=v!=="regional"}
 
 function propostaHTML(p,i){return `<button type="button" class="prop" data-i="${i}" aria-pressed="${i===ESC}">
   <div class="hero-m" style="background:linear-gradient(135deg,${p.primaria} 0%,${p.escura} 78%)"><span class="tag" style="opacity:.8">${esc(CFG.veiculo||"Veículo")}</span><b>Pauta do programa</b><i style="background:${p.destaque};color:${p.sobre_destaque}">↻ Gerar pauta</i></div>
@@ -180,8 +214,9 @@ function preenche(c){CFG=c;const P=c.programa||{},R=c.regiao||{},M=c.marca||{};
   F.p_itens.value=P.itens||6;F.p_perg.value=P.perguntas_por_item||3;F.p_blocos.value=linhas(P.blocos);
   $("#dias").innerHTML=DIAS.map((d,i)=>`<label><input type="checkbox" name="dia" value="${i}" ${(P.dias||[]).includes(i)?"checked":""}><span>${d}</span></label>`).join("");
   F.linha.value=c.linha_editorial||"";F.temas.value=linhas(c.temas_prioritarios);F.fontes.value=linhas(c.fontes_da_linha);F.voz.value=linhas(c.voz);
+  (F.querySelector(`[name=cobertura][value="${c.cobertura==="nacional"?"nacional":"regional"}"]`)||{}).checked=true;cobertura();
   F.r_nome.value=R.nome||"";F.r_rotulo.value=R.rotulo_bloco||"";F.r_buscas.value=linhas(R.buscas);F.esportes.value=linhas(c.esportes_buscas);
-  $("#portais").innerHTML="";(R.portais||[]).forEach(portal);if(!(R.portais||[]).length)portal();
+  $("#portais").innerHTML="";(R.portais||[]).forEach(portal);
   const H=(c.noticias?.edicoes||[]).map(e=>parseInt(e,10));
   $("#horas").innerHTML=Array.from({length:24},(_,h)=>`<label><input type="checkbox" name="hora" value="${h}" ${H.includes(h)?"checked":""}><span>${String(h).padStart(2,"0")}h</span></label>`).join("");
   const atual=M.cores||{primaria:M.cor||"#0b3d91"};PROPS=[{nome:"Atual",...Paleta.monta(atual.primaria,null,"Atual"),...atual,nome:"Atual"}];ESC=0;mostraProps();
@@ -193,11 +228,15 @@ function coleta(){const P=PROPS[ESC]||{};
       horario:F.p_horario.value,gera_pauta_as:F.p_gera.value,itens:+F.p_itens.value,perguntas_por_item:+F.p_perg.value,blocos:deLinhas(F.p_blocos.value),
       virada_hora:CFG.programa?.virada_hora,linhas_resumo:CFG.programa?.linhas_resumo,metafora_percentual:CFG.programa?.metafora_percentual},
     linha_editorial:F.linha.value,temas_prioritarios:deLinhas(F.temas.value),fontes_da_linha:deLinhas(F.fontes.value),voz:deLinhas(F.voz.value),
-    regiao:{nome:F.r_nome.value,rotulo_bloco:F.r_rotulo.value,buscas:deLinhas(F.r_buscas.value),portais:[...document.querySelectorAll(".portal")].map(d=>({name:d.querySelector(".n").value,url:d.querySelector(".u").value,tier:+d.querySelector(".t").value})).filter(p=>p.name&&p.url)},
+    cobertura:(F.querySelector("[name=cobertura]:checked")||{}).value||"regional",regiao:{nome:F.r_nome.value,rotulo_bloco:F.r_rotulo.value,buscas:deLinhas(F.r_buscas.value),portais:[...document.querySelectorAll(".portal")].map(d=>({name:d.querySelector(".n").value,url:(v=>v&&!/^https?:/i.test(v)?"https://"+v:v)(d.querySelector(".u").value.trim()),tier:+d.querySelector(".t").value})).filter(p=>p.name&&p.url)},
     esportes_buscas:deLinhas(F.esportes.value),noticias:{edicoes:[...F.querySelectorAll("[name=hora]:checked")].map(x=>x.value.padStart(2,"0")+"h")},
     marca:{cores:{primaria:P.primaria,escura:P.escura,acento:P.acento,destaque:P.destaque,sobre_destaque:P.sobre_destaque}}}}
 F.addEventListener("change",e=>{if(e.target.name==="hora"&&F.querySelectorAll("[name=hora]:checked").length>6){e.target.checked=false;msg("No máximo 6 edições por dia.","err")}});
-$("#addPortal").onclick=()=>portal();
+$("#addPortal").onclick=()=>{portal();$("#portais .portal:last-child .n").focus()};
+F.addEventListener("change",e=>{if(e.target.name==="cobertura")cobertura()});
+fetch("/noticias/config.json",{cache:"no-store"}).then(r=>r.json()).then(c=>{const ex=new Set(((CFG&&CFG.regiao&&CFG.regiao.portais)||[]).map(p=>dom(p.url)));
+  BASE=(c.outlets||[]).filter(o=>!ex.has(dom(o.url)));$("#baseTxt").textContent=`O painel já lê ${BASE.length} portais em toda edição: os grandes nacionais, agências e os principais jornais de cada estado.`;
+  $("#baseLista").textContent=BASE.map(o=>o.name).join(", ")+".";document.querySelectorAll(".portal .u").forEach(u=>u.oninput())}).catch(()=>{});
 F.onsubmit=async e=>{e.preventDefault();const b=$("#salvar");b.disabled=true;msg("Salvando…");
   try{const r=await fetch("/api/config",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cliente:coleta(),logo:LOGO,sha:SHA})});
     const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||"Erro "+r.status);

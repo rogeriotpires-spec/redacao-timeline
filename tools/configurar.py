@@ -7,15 +7,24 @@ Uso: python3 tools/configurar.py"""
 import json, os, re
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 C = json.load(open("cliente.json", encoding="utf-8"))
-P, R = C["programa"], C["regiao"]
+P, R = C["programa"], C.get("regiao") or {}
+NACIONAL = C.get("cobertura", "regional") == "nacional"
+from urllib.parse import urlparse
+def dominio(u):
+    return urlparse(u).netloc.lower().removeprefix("www.")
 
 # ---------- notícias ----------
 n = json.load(open("tools/noticias-base.json", encoding="utf-8"))
 n["_doc"] = f"Parâmetros da aba Notícias de {C['cliente']}. Gerado por tools/configurar.py a partir de cliente.json; ajustes finos podem ser feitos aqui."
 nomes = {o["name"] for o in n["outlets"]}
-n["outlets"] = [o for o in n["outlets"] if o["name"] not in {p["name"] for p in R["portais"]}] + R["portais"]
+# portais extras do cliente: entram na lista, sem duplicar quem já é monitorado (mesmo domínio)
+base_dom = {dominio(o["url"]) for o in n["outlets"]}
+extras = [dict(p, camp=("regional" if not NACIONAL else "outros")) for p in R.get("portais", []) if dominio(p["url"]) not in base_dom]
+n["outlets"] = n["outlets"] + extras
+if NACIONAL:
+    n["segments"] = [s for s in n["segments"] if s["key"] != "rio"]
 for s in n["segments"]:
-    if s["key"] == "rio":
+    if s["key"] == "rio" and not NACIONAL:
         s["key"], s["label"] = "regiao", R.get("rotulo_bloco") or R["nome"]
         s["note"] = f"{R['nome']}: governo do estado, Assembleia, prefeitura da capital, câmara municipal, segurança, transporte, economia e interior da região de cobertura do veículo"
     if s["key"] == "educacao":
@@ -40,7 +49,7 @@ pc = {"_doc": f"Parâmetros da pauta do programa {P['nome']}. Gerado por tools/c
       "programa": P["nome"], "veiculo": C["veiculo"], "apresentadores": P["apresentadores"], "horario": P["horario"],
       "itens": P["itens"], "linhas_resumo": P["linhas_resumo"], "metafora_percentual": P["metafora_percentual"],
       "perguntas_por_item": P["perguntas_por_item"], "fontes_por_item": "2 a 4", "linha_editorial": C["linha_editorial"],
-      "fontes_preferidas": C["fontes_da_linha"], "blocos": [R["nome"] if b == "Região" else b for b in P["blocos"]], "virada_hora": P["virada_hora"]}
+      "fontes_preferidas": C["fontes_da_linha"], "blocos": [b for b in P["blocos"] if b != "Região"] if NACIONAL else [R.get("nome", "Região") if b == "Região" else b for b in P["blocos"]], "cobertura": "nacional" if NACIONAL else R.get("nome"), "virada_hora": P["virada_hora"]}
 json.dump(pc, open("programa/config.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 for f, k in (("noticias/index.json", "editions"), ("programa/index.json", "days")):
     if not os.path.exists(f): json.dump({k: []}, open(f, "w"))
@@ -54,7 +63,7 @@ logo = M.get("logo") if M.get("logo") and os.path.exists(M["logo"]) else None
 versao = hashlib.sha1(json.dumps(C, sort_keys=True).encode() + (open(logo, "rb").read() if logo else b"")).hexdigest()[:10]
 json.dump({"produto": C["produto"], "cliente": C["cliente"], "veiculo": C["veiculo"], "programa": P["nome"],
            "apresentadores": P["apresentadores"], "horario": P["horario"], "dias": P["dias"], "gera_pauta_as": P["gera_pauta_as"], "virada_hora": P["virada_hora"],
-           "edicoes": EDICOES, "cor": cores.get("primaria"), "cores": cores, "logo": logo, "versao": versao},
+           "edicoes": EDICOES, "cobertura": "nacional" if NACIONAL else "regional", "regiao": None if NACIONAL else R.get("nome"), "cor": cores.get("primaria"), "cores": cores, "logo": logo, "versao": versao},
           open("site/cliente.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 # ---------- horários das rotinas (cron em UTC; Brasília = UTC-3) ----------
@@ -69,4 +78,4 @@ def troca(arq, novo):
 troca("programa.yml", f"{m} {hu} * * {dias}")
 # a rotina de notícias começa 1 hora antes do horário da edição (leva de 20 a 40 minutos)
 troca("noticias.yml", "0 " + ",".join(str((h - 1 + 3) % 24) for h in HORAS) + " * * *")
-print(f"ok: {C['cliente']} · {len(n['outlets'])} portais · pauta {P['nome']} às {P['gera_pauta_as']} (dias {dias}) · notícias {EDICOES}")
+print(f"ok: {C['cliente']} · cobertura {'nacional' if NACIONAL else R.get('nome')} · {len(n['outlets'])} portais ({len(extras)} extras) · pauta {P['nome']} às {P['gera_pauta_as']} (dias {dias}) · notícias {EDICOES}")

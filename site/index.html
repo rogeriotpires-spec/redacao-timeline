@@ -297,7 +297,7 @@ details summary{cursor:pointer;font-size:12.5px;color:var(--text-2)}
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const CAMP={direita:["Direita","var(--s1)"],"centro-direita":["Centro-direita","var(--s1)"],centro:["Centro","var(--muted)"],"centro-esquerda":["Centro-esquerda","var(--s2)"],esquerda:["Esquerda","var(--s2)"],estatal:["Estatal","var(--s4)"],internacional:["Internacional","var(--s3)"],rio:["Rio","var(--s5)"],regional:["Regional","var(--s5)"]};
+const CAMP={outros:["Outros","var(--muted)"],direita:["Direita","var(--s1)"],"centro-direita":["Centro-direita","var(--s1)"],centro:["Centro","var(--muted)"],"centro-esquerda":["Centro-esquerda","var(--s2)"],esquerda:["Esquerda","var(--s2)"],estatal:["Estatal","var(--s4)"],internacional:["Internacional","var(--s3)"],rio:["Rio","var(--s5)"],regional:["Regional","var(--s5)"]};
 const POS={manchete:"manchete",topo:"topo",secundario:"secundário","secundário":"secundário",editoria:"editoria"};
 let CFG,EDS=[],CUR,ED,SEG="top",DONE={},BODIES={},NV={},NF="all",DONEP={};
 /* dia da pauta do programa que recebe o item: hoje até 14h; depois, o próximo dia útil */

@@ -70,13 +70,6 @@
    "min_outlets": 1
   },
   {
-   "key": "regiao",
-   "label": "Brasil",
-   "note": "Brasil: governo do estado, Assembleia, prefeitura da capital, câmara municipal, segurança, transporte, economia e interior da região de cobertura do veículo",
-   "min_items": 3,
-   "min_outlets": 1
-  },
-  {
    "key": "ciencia",
    "label": "Ciência e tecnologia",
    "note": "Ciência, pesquisa, inovação, startups, inteligência artificial, big techs e regulação digital, saúde e medicina, espaço",
@@ -92,6 +85,14 @@
   }
  ],
  "outlets": [
+  {
+   "name": "G1",
+   "url": "https://g1.globo.com",
+   "camp": "centro",
+   "fetch": false,
+   "note": "O G1 bloqueia leitura automática. Entra quando aparece na busca ou é citado por outro portal; a ausência dele não conta para a nota nem para a assimetria.",
+   "tier": 1
+  },
   {
    "name": "O Globo",
    "url": "https://oglobo.globo.com",
@@ -419,26 +420,14 @@
   {
    "name": "Globo",
    "url": "https://g1.com",
-   "camp": "regional",
+   "camp": "outros",
    "tier": 2
   },
   {
    "name": "Extra",
    "url": "https://extra.globo.com",
-   "camp": "regional",
+   "camp": "outros",
    "tier": 2
-  },
-  {
-   "name": "Revista Veja",
-   "url": "https://veja.abril.com.br",
-   "camp": "regional",
-   "tier": 2
-  },
-  {
-   "name": "G1",
-   "url": "https://www.g1.globo.com",
-   "camp": "regional",
-   "tier": 3
   }
  ],
  "_doc_tiers": "tier 1: abrir a home em toda edição; tier 2: abrir a home ou buscar por site em toda edição; tier 3 (regionais e agregadores): buscar por site (WebSearch site:dominio) os fatos do dia e abrir só quando houver matéria relevante, sobretudo fatos do estado do veículo.",

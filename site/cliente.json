@@ -20,6 +20,8 @@
   "12h",
   "19h"
  ],
+ "cobertura": "nacional",
+ "regiao": null,
  "cor": "#683011",
  "cores": {
   "primaria": "#683011",
@@ -29,5 +31,5 @@
   "sobre_destaque": "#2b1307"
  },
  "logo": "marca/logo.png",
- "versao": "cb1052366c"
+ "versao": "e6aab911f4"
 }

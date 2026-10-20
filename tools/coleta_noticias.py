@@ -36,7 +36,7 @@ for o in cfg["outlets"]:
 CL = json.load(open("cliente.json", encoding="utf-8"))
 TEMAS = {
     "educacao": ["MEC OR Enem OR Fies OR Prouni OR Inep", "universidade federal OR instituto federal OR reitoria", "escola pública OR professores OR rede estadual de ensino"],
-    "regiao": CL["regiao"]["buscas"],
+    **({"regiao": CL["regiao"]["buscas"]} if CL.get("cobertura", "regional") == "regional" and CL.get("regiao", {}).get("buscas") else {}),
     "ciencia": ["inteligência artificial", "ciência OR pesquisa científica OR CNPq OR Capes OR Finep", "startup OR inovação OR tecnologia big tech", "saúde OR vacina OR medicina estudo"],
     "esportes": CL.get("esportes_buscas") or ["seleção brasileira OR CBF OR Brasileirão"]}
 saida["temas"] = {}
