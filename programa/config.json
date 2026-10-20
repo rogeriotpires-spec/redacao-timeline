@@ -1,10 +1,12 @@
 {
  "_doc": "Parâmetros da pauta do programa Conversa Timeline. Gerado por tools/configurar.py a partir de cliente.json.",
  "programa": "Conversa Timeline",
- "veiculo": "TL TV",
- "apresentadores": [],
- "horario": "07:00",
- "itens": 6,
+ "veiculo": "Conversa Timeline",
+ "apresentadores": [
+  "Rogerio Pires"
+ ],
+ "horario": "11:00",
+ "itens": 8,
  "linhas_resumo": 5,
  "metafora_percentual": 25,
  "perguntas_por_item": 3,
@@ -23,7 +25,7 @@
   "STF e instituições",
   "Economia",
   "Segurança pública",
-  "Rio de Janeiro",
+  "Brasil",
   "Internacional",
   "Educação"
  ],

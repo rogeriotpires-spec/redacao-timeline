@@ -26,9 +26,9 @@
   },
   {
    "key": "peso_voce",
-   "label": "Peso para TL TV",
+   "label": "Peso para Conversa Timeline",
    "weight": 7,
-   "how": "Aderência à linha editorial de TL TV e aos temas prioritários (política nacional, STF e TSE, eleição, economia no bolso, segurança pública, corrupção, imprensa, a região de cobertura): forte = 10; média = 6; fraca = 3."
+   "how": "Aderência à linha editorial de Conversa Timeline e aos temas prioritários (política nacional, STF e TSE, eleição, economia no bolso, segurança pública, corrupção, imprensa, a região de cobertura): forte = 10; média = 6; fraca = 3."
   }
  ],
  "score_formula": "nota final = soma(nota do critério x peso) / soma dos pesos, de 0 a 10",
@@ -71,8 +71,8 @@
   },
   {
    "key": "regiao",
-   "label": "Rio de Janeiro",
-   "note": "Rio de Janeiro: governo do estado, Assembleia, prefeitura da capital, câmara municipal, segurança, transporte, economia e interior da região de cobertura do veículo",
+   "label": "Brasil",
+   "note": "Brasil: governo do estado, Assembleia, prefeitura da capital, câmara municipal, segurança, transporte, economia e interior da região de cobertura do veículo",
    "min_items": 3,
    "min_outlets": 1
   },
@@ -425,8 +425,8 @@
    "tier": 3
   },
   {
-   "name": "O Dia",
-   "url": "https://odia.ig.com.br",
+   "name": "Globo",
+   "url": "https://g1.com",
    "camp": "regional",
    "tier": 2
   },

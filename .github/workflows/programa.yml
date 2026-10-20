@@ -2,7 +2,7 @@ name: Gerar pauta do programa
 
 on:
   schedule:
-    - cron: "30 8 * * 1,2,3,4,5"
+    - cron: "30 12 * * 1,2,4,5"
   workflow_dispatch:
 
 permissions:

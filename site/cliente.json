@@ -1,32 +1,33 @@
 {
  "produto": "Redação Inteligente",
  "cliente": "Timeline",
- "veiculo": "TL TV",
+ "veiculo": "Conversa Timeline",
  "programa": "Conversa Timeline",
- "apresentadores": [],
- "horario": "07:00",
+ "apresentadores": [
+  "Rogerio Pires"
+ ],
+ "horario": "11:00",
  "dias": [
   1,
   2,
-  3,
   4,
   5
  ],
- "gera_pauta_as": "05:30",
+ "gera_pauta_as": "09:30",
  "virada_hora": 14,
  "edicoes": [
   "06h",
   "12h",
   "19h"
  ],
- "cor": "#0b3d91",
+ "cor": "#683011",
  "cores": {
-  "primaria": "#0b3d91",
-  "escura": "#091936",
-  "acento": "#2d5fb6",
+  "primaria": "#683011",
+  "escura": "#2b1307",
+  "acento": "#8d5134",
   "destaque": "#fad03e",
-  "sobre_destaque": "#091936"
+  "sobre_destaque": "#2b1307"
  },
- "logo": null,
- "versao": "25a78fd576"
+ "logo": "marca/logo.png",
+ "versao": "2a7fcb04ec"
 }
