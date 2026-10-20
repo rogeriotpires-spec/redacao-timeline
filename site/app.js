@@ -68,14 +68,14 @@ window.Painel = (() => {
   function menu() {
     const host = document.querySelector(".nav-in .tabs");
     if (!host || !EU) return;
-    if (EU.papel === "admin" && !host.querySelector('a[href$="consumo.html"]')) { const t = document.createElement("a"); t.href = "consumo.html"; t.textContent = "Consumo"; host.appendChild(t) }
+    if ((EU.papel === "admin" || EU.operador) && !host.querySelector('a[href$="consumo.html"]')) { const t = document.createElement("a"); t.href = "consumo.html"; t.textContent = "Consumo"; host.appendChild(t) }
     const w = document.createElement("div"); w.className = "umenu";
     w.innerHTML = `<button type="button" class="ubtn" aria-haspopup="menu" aria-expanded="false">${esc(EU.nome.split(" ")[0])} ▾</button>`;
     host.appendChild(w);
     const fundo = document.createElement("div"); fundo.className = "ufundo"; fundo.hidden = true;
     const pop = document.createElement("div"); pop.className = "upop"; pop.hidden = true; pop.setAttribute("role", "menu");
-    pop.innerHTML = `<div class="uhead"><b>${esc(EU.nome)}</b><small>${esc(EU.login)} · ${EU.papel === "admin" ? "administrador" : "redação"}</small></div>
-      ${EU.papel === "admin" ? `<a href="/consumo.html" role="menuitem">📊 Consumo</a><a href="/configuracoes.html" role="menuitem">⚙️ Configurações</a><a href="/admin.html" role="menuitem">👥 Usuários</a>` : ""}<button type="button" data-u="senha" role="menuitem">🔑 Trocar senha</button><button type="button" data-u="sair" role="menuitem">↩︎ Sair</button>`;
+    pop.innerHTML = `<div class="uhead"><b>${esc(EU.nome)}</b><small>${esc(EU.login)} · ${EU.operador ? "operador" : EU.papel === "admin" ? "administrador" : "redação"}</small></div>
+      ${(EU.papel === "admin" || EU.operador) ? `<a href="/consumo.html" role="menuitem">📊 Consumo</a><a href="/configuracoes.html" role="menuitem">⚙️ Configurações</a><a href="/admin.html" role="menuitem">👥 Usuários</a>` : ""}<button type="button" data-u="senha" role="menuitem">🔑 Trocar senha</button><button type="button" data-u="sair" role="menuitem">↩︎ Sair</button>`;
     document.body.append(fundo, pop);
     const btn = w.querySelector(".ubtn");
     const fecha = () => { pop.hidden = fundo.hidden = true; btn.setAttribute("aria-expanded", "false") };

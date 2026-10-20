@@ -1,0 +1,12 @@
+{
+  "_doc": "Catálogo dos planos. Limites por mês (gerações concluídas). edicoes_dia = máximo de horários de edição de notícias na Configuração.",
+  "essencial": {"nome": "Essencial", "preco_brl": 1990, "edicoes_dia": 2, "regional": false,
+    "limites": {"noticias": 62, "programa": 23, "avulso": 60},
+    "resumo": "Notícias (até 2 edições por dia), pauta de 1 programa e até 60 itens avulsos por mês"},
+  "profissional": {"nome": "Profissional", "preco_brl": 2990, "edicoes_dia": 3, "regional": true,
+    "limites": {"noticias": 93, "programa": 23, "avulso": 150},
+    "resumo": "Notícias (até 3 edições por dia), pauta de 1 programa, até 150 itens avulsos por mês e cobertura regional"},
+  "rede": {"nome": "Rede", "preco_brl": 4990, "edicoes_dia": 6, "regional": true,
+    "limites": {"noticias": 186, "programa": 69, "avulso": 400},
+    "resumo": "Notícias (até 6 edições por dia), pautas de até 3 programas e até 400 itens avulsos por mês"}
+}

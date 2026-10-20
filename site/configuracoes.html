@@ -161,7 +161,7 @@ details.base p{margin:8px 0 0;line-height:1.6}
 
     <section class="card">
       <h2>Notícias do dia</h2>
-      <p class="hint">Horários das edições (Brasília). Cada edição leva de 20 a 40 minutos e fica pronta perto do horário marcado. Até 6 por dia.</p>
+      <p class="hint">Horários das edições (Brasília). Cada edição fica pronta perto do horário marcado. <span id="limEd">Até 6 por dia.</span></p>
       <div class="chips" id="horas"></div>
     </section>
     <button class="btn big" type="submit" id="salvar2">💾 Salvar configurações</button>
@@ -233,7 +233,10 @@ function coleta(){const P=PROPS[ESC]||{};
     cobertura:(F.querySelector("[name=cobertura]:checked")||{}).value||"regional",regiao:{nome:F.r_nome.value,rotulo_bloco:F.r_rotulo.value,buscas:deLinhas(F.r_buscas.value),portais:[...document.querySelectorAll(".portal")].map(d=>({name:d.querySelector(".n").value,url:(v=>v&&!/^https?:/i.test(v)?"https://"+v:v)(d.querySelector(".u").value.trim()),tier:+d.querySelector(".t").value})).filter(p=>p.name&&p.url)},
     esportes_buscas:deLinhas(F.esportes.value),noticias:{edicoes:[...F.querySelectorAll("[name=hora]:checked")].map(x=>x.value.padStart(2,"0")+"h")},
     marca:{cores:{primaria:P.primaria,escura:P.escura,acento:P.acento,destaque:P.destaque,sobre_destaque:P.sobre_destaque}}}}
-F.addEventListener("change",e=>{if(e.target.name==="hora"&&F.querySelectorAll("[name=hora]:checked").length>6){e.target.checked=false;msg("No máximo 6 edições por dia.","err")}});
+const PL=()=>(Painel.usuario&&Painel.usuario.plano)||{edicoes_dia:6,regional:true,nome:""};
+F.addEventListener("change",e=>{const m=PL().edicoes_dia;if(e.target.name==="hora"&&F.querySelectorAll("[name=hora]:checked").length>m){e.target.checked=false;msg(`O plano ${PL().nome} inclui até ${m} edições por dia. Para mais, fale sobre o upgrade.`,"err")}});
+function aplicaPlano(){const p=PL();$("#limEd").textContent=`Seu plano (${p.nome}) inclui até ${p.edicoes_dia} por dia.`;
+  const r=F.querySelector("[name=cobertura][value=regional]");if(r&&!p.regional){r.disabled=true;r.closest(".cobop").querySelector("small").textContent=`Disponível a partir do plano Profissional. Hoje: ${p.nome}.`;r.closest(".cobop").style.opacity=.55}}
 $("#addPortal").onclick=()=>{portal();$("#portais .portal:last-child .n").focus()};
 F.addEventListener("change",e=>{if(e.target.name==="cobertura")cobertura()});
 fetch("/noticias/config.json",{cache:"no-store"}).then(r=>r.json()).then(c=>{const ex=new Set(((CFG&&CFG.regiao&&CFG.regiao.portais)||[]).map(p=>dom(p.url)));
@@ -249,7 +252,7 @@ async function espera(){const v0=Painel.cliente?.versao;const t0=Date.now();
     const c=await fetch("/cliente.json?"+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>null);
     if(c&&c.versao&&c.versao!==v0){msg("Pronto! Recarregando…","ok");setTimeout(()=>location.reload(),800);return}}
   msg("Salvo. A atualização está demorando; recarregue em alguns minutos.","ok")}
-Painel.pronto.then(()=>fetch("/api/config",{cache:"no-store"})).then(async r=>{const j=await r.json();if(!r.ok)throw new Error(j.error||"Erro "+r.status);SHA=j.sha;preenche(j.cliente);$("#carregando").remove();F.hidden=false;$("#salvar").disabled=false})
+Painel.pronto.then(()=>fetch("/api/config",{cache:"no-store"})).then(async r=>{const j=await r.json();if(!r.ok)throw new Error(j.error||"Erro "+r.status);SHA=j.sha;preenche(j.cliente);aplicaPlano();$("#carregando").remove();F.hidden=false;$("#salvar").disabled=false})
   .catch(e=>{$("#carregando").textContent="Não consegui carregar as configurações: "+e.message});
 </script>
 </body>

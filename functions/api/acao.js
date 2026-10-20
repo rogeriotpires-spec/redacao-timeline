@@ -1,21 +1,25 @@
 // Ações da redação: dispara as rotinas no GitHub do cliente com o token guardado na Cloudflare (nunca no navegador).
 import { json } from "../../lib/auth.js";
 import { leJson } from "../../lib/github.js";
+import { limites, usoDoMes, mesBR } from "../../lib/plano.js";
 const JOBS = { noticias: "noticias.yml", programa: "programa.yml", avulso: "programa-avulso.yml", excluir: "pauta-excluir.yml" };
 const gh = (env, path, init = {}) => fetch(`${env.GH_API || "https://api.github.com"}/repos/${env.GH_REPO}${path}`, { ...init, headers: { Authorization: `Bearer ${env.GH_TOKEN}`, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "redacao-inteligente", "Content-Type": "application/json" } });
 export async function onRequestPost({ request, env, data }) {
   const b = await request.json().catch(() => ({})), wf = JOBS[b.job];
   if (!wf) return json({ error: "Ação desconhecida." }, 400);
-  // controle da geração (aba Consumo): pausado ou orçamento estourado barram já aqui, com aviso claro
+  // controle da geração (aba Consumo) e limites do plano: barram já aqui, com aviso claro
   if (b.job !== "excluir") {
     const c = (await leJson(env, "controle.json", {}).catch(() => ({ dados: {} }))).dados || {};
     if (c.estado === "pausado") return json({ error: "A geração está pausada pelo administrador (aba Consumo)." }, 423);
+    const h = (await leJson(env, "historico/consumo.json", { execucoes: [] }).catch(() => ({ dados: { execucoes: [] } }))).dados;
+    const rot = b.job, lim = limites(data.plano)[rot], uso = usoDoMes(h.execucoes)[rot];
+    const NOME = { noticias: "edições de notícias", programa: "pautas do programa", avulso: "itens avulsos" };
+    if (lim !== undefined && uso >= lim) return json({ error: `O plano ${data.plano.nome} inclui ${lim} ${NOME[rot]} por mês, e esse limite foi atingido. Para liberar mais, fale com ${data.plano.contato || "o suporte"}.` }, 423);
     const orc = Number(c.orcamento_mensal_usd) || 0;
     if (orc > 0) {
-      const h = (await leJson(env, "historico/consumo.json", { execucoes: [] }).catch(() => ({ dados: { execucoes: [] } }))).dados;
-      const mes = new Date(Date.now() - 3 * 36e5).toISOString().slice(0, 7);
+      const mes = mesBR();
       const gasto = (h.execucoes || []).filter(e => String(e.inicio || "").startsWith(mes)).reduce((a, e) => a + (e.custo_usd || 0), 0);
-      if (gasto >= orc) return json({ error: `O orçamento do mês (US$ ${orc.toFixed(2)}) foi atingido. O administrador pode ajustá-lo na aba Consumo.` }, 423);
+      if (gasto >= orc) return json({ error: `A geração deste mês foi suspensa por limite de uso. Fale com ${data.plano.contato || "o suporte"}.` }, 423);
     }
   }
   let inputs;

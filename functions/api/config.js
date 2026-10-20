@@ -17,7 +17,7 @@ export async function onRequestPost({ request, env, data }) {
     const f = await le(env, "cliente.json");
     const atual = f ? JSON.parse(b64dec(f.content)) : {};
     if (f && b.sha && b.sha !== f.sha) return json({ error: "Alguém salvou as configurações depois que você abriu a página. Recarregue e confira antes de salvar." }, 409);
-    const { config, erros } = validaConfig(b.cliente, atual);
+    const { config, erros } = validaConfig(b.cliente, atual, data.plano);
     if (erros.length) return json({ error: erros.join(" ") }, 400);
     const quem = data.usuario.login, arquivos = [];
     if (b.logo) {

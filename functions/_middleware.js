@@ -1,5 +1,6 @@
 // Porteiro: nenhuma página ou dado sai sem sessão válida. Só a tela de login e a criação do primeiro administrador ficam abertas.
 import { leSessao, json } from "../lib/auth.js";
+import { lePlano, ehOperador } from "../lib/plano.js";
 // A Cloudflare serve "/login.html" também como "/login": comparamos sem o ".html".
 const ABERTOS = new Set(["/login", "/setup", "/api/login", "/api/setup", "/favicon.ico", "/cliente.json", "/estilo.css"]);
 const SEGURANCA = {
@@ -23,9 +24,12 @@ export async function onRequest(ctx) {
     const destino = /^\/[a-z0-9-]*(\.html)?$/i.test(path) ? path + url.search : "/";
     return Response.redirect(`${url.origin}/login.html?next=${encodeURIComponent(destino)}`, 302);
   }
-  if ((limpo === "/admin" || limpo === "/configuracoes" || limpo === "/consumo" || path.startsWith("/historico/") || path.startsWith("/api/consumo") || path.startsWith("/api/usuarios") || path.startsWith("/api/config")) && u.papel !== "admin") {
+  const plano = await lePlano(env, request), operador = ehOperador(u, plano);
+  // operador: quem vende e implanta o produto (vê custos, muda plano e modelos). Ele também é administrador.
+  if ((path === "/plano.json" || path.startsWith("/historico/")) && !operador) return path.startsWith("/api/") ? json({ error: "Só o operador." }, 403) : new Response("Não encontrado", { status: 404 });
+  if ((limpo === "/admin" || limpo === "/configuracoes" || limpo === "/consumo" || path.startsWith("/api/consumo") || path.startsWith("/api/usuarios") || path.startsWith("/api/config")) && u.papel !== "admin" && !operador) {
     return path.startsWith("/api/") ? json({ error: "Só administradores." }, 403) : Response.redirect(url.origin + "/", 302);
   }
-  ctx.data.usuario = u;
+  ctx.data.usuario = u; ctx.data.plano = plano; ctx.data.operador = operador;
   return comCabecalhos(await next(), true);
 }

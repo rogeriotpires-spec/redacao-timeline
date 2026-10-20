@@ -46,7 +46,7 @@ td{padding:10px 8px;border-bottom:1px solid var(--border);vertical-align:middle}
       <label>Nome<input name="nome" required maxlength="80"></label>
       <label>Usuário (login)<input name="login" required pattern="[a-z0-9._\-]{3,40}" title="3 a 40 letras minúsculas, números, ponto, hífen ou sublinhado" autocapitalize="none"></label>
       <label>Senha provisória<input name="senha" required minlength="8" autocomplete="new-password"></label>
-      <label>Papel<select name="papel"><option value="redacao">Redação</option><option value="admin">Administrador</option></select></label>
+      <label>Papel<select name="papel"><option value="redacao">Redação</option><option value="admin">Administrador</option><option value="operador" data-op hidden>Operador</option></select></label>
       <button class="btn">Criar</button>
     </div>
     <p class="small">A pessoa troca a senha provisória no primeiro acesso.</p>
@@ -62,7 +62,7 @@ const api=(body)=>fetch("/api/usuarios",{method:"POST",headers:{"Content-Type":"
 const quando=s=>s?new Date(s).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"nunca";
 async function carrega(){
   const j=await fetch("/api/usuarios",{cache:"no-store"}).then(r=>r.json());const eu=Painel.usuario||{};
-  $("#lista").innerHTML=(j.usuarios||[]).map(u=>`<tr><td><b>${esc(u.nome)}</b></td><td>${esc(u.login)}</td><td><span class="pill neutral">${u.papel==="admin"?"Administrador":"Redação"}</span></td><td><span class="pill ${u.ativo?"good":"bad"}">${u.ativo?"Ativo":"Bloqueado"}</span></td><td class="small">${quando(u.ultimo_acesso)}</td>
+  $("#lista").innerHTML=(j.usuarios||[]).map(u=>`<tr><td><b>${esc(u.nome)}</b></td><td>${esc(u.login)}</td><td><span class="pill neutral">${u.papel==="operador"?"Operador":u.papel==="admin"?"Administrador":"Redação"}</span></td><td><span class="pill ${u.ativo?"good":"bad"}">${u.ativo?"Ativo":"Bloqueado"}</span></td><td class="small">${quando(u.ultimo_acesso)}</td>
     <td><div class="acts"><button class="btn ghost sm" data-a="senha" data-l="${esc(u.login)}">Nova senha</button><button class="btn ghost sm" data-a="${u.ativo?"bloquear":"desbloquear"}" data-l="${esc(u.login)}">${u.ativo?"Bloquear":"Desbloquear"}</button><button class="btn ghost sm" data-a="papel" data-p="${u.papel==="admin"?"redacao":"admin"}" data-l="${esc(u.login)}">${u.papel==="admin"?"Tornar redação":"Tornar admin"}</button>${u.login!==eu.login?`<button class="btn danger sm" data-a="remover" data-l="${esc(u.login)}">Remover</button>`:""}</div></td></tr>`).join("")||`<tr><td colspan="6">Nenhum usuário.</td></tr>`;
 }
 $("#novo").onsubmit=async e=>{e.preventDefault();const f=e.target,m=$("#m1");m.className="msg";m.textContent="";
@@ -75,7 +75,7 @@ document.addEventListener("click",async e=>{const b=e.target.closest("button[dat
   if(a==="bloquear"&&!confirm(`Bloquear ${l}? A pessoa perde o acesso na hora, e você pode desbloquear depois.`))return;
   if(a==="papel")body.papel=b.dataset.p;
   try{await api(body);m.className="msg ok";m.textContent=a==="senha"?`Senha de ${l} trocada. A pessoa cria uma nova no próximo acesso.`:"Feito.";carrega()}catch(err){m.className="msg err";m.textContent=err.message}});
-Painel.pronto.then(carrega);
+Painel.pronto.then(()=>{if(Painel.usuario&&Painel.usuario.operador)document.querySelectorAll("[data-op]").forEach(o=>o.hidden=false);carrega()});
 </script>
 </body>
 </html>

@@ -39,6 +39,23 @@ def gasto_mes(h, agora=None):
     return sum(e.get("custo_usd") or 0 for e in h["execucoes"] if str(e.get("inicio", "")).startswith(m))
 
 
+def plano():
+    """Plano contratado (plano.json) com os limites do catálogo (lib/planos.json) e os extras do mês."""
+    try: cat = json.load(open("lib/planos.json", encoding="utf-8"))
+    except Exception: return None
+    try: p = json.load(open("plano.json", encoding="utf-8"))
+    except Exception: p = {}
+    d = cat.get(p.get("plano")) or cat["profissional"]
+    mes = dt.datetime.now(BR).strftime("%Y-%m")
+    ex = (p.get("extras") or {}).get(mes) or {}
+    return {"nome": d["nome"], "limites": {r: d["limites"].get(r, 0) + int(ex.get(r) or 0) for r in d["limites"]}}
+
+
+def uso_mes(h, rotina):
+    m = dt.datetime.now(BR).strftime("%Y-%m")
+    return sum(1 for e in h["execucoes"] if e.get("rotina") == rotina and e.get("resultado") == "sucesso" and str(e.get("inicio", "")).startswith(m))
+
+
 def saida(**kv):
     linhas = "".join(f"{k}={v}\n" for k, v in kv.items())
     if os.environ.get("GITHUB_OUTPUT"):
@@ -56,8 +73,12 @@ def pode(evento, rotina):
         return saida(pode="nao", modelo=modelo, motivo="geração pausada pelo administrador")
     if evento == "schedule" and estado != "ativo":
         return saida(pode="nao", modelo=modelo, motivo="gerações automáticas suspensas (só manual)")
+    h = historico()
+    P = plano()
+    if P and rotina in P["limites"] and uso_mes(h, rotina) >= P["limites"][rotina]:
+        return saida(pode="nao", modelo=modelo, motivo=f"limite do plano {P['nome']} atingido ({P['limites'][rotina]} por mês)")
     orc = float(c.get("orcamento_mensal_usd") or 0)
-    if orc > 0 and gasto_mes(historico()) >= orc:
+    if orc > 0 and gasto_mes(h) >= orc:
         return saida(pode="nao", modelo=modelo, motivo=f"orçamento do mês atingido (US$ {orc:.2f})")
     saida(pode="sim", modelo=modelo, motivo="ok")
 

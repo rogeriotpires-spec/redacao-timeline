@@ -11,6 +11,7 @@
 :root{color-scheme:light;--bg:#f3f2ee;--surface:#fcfcfb;--surface-2:#f6f5f1;--border:#e3e1da;--text:#0b0b0b;--text-2:#52514e;--muted:#85847e;--good:#0f7a4c;--good-bg:#e5f4ec;--warn:#9a5b00;--warn-bg:#fbf0dc;--bad:#b4302f;--bad-bg:#fbe6e5;--info:#2a5fb4;--info-bg:#e6eefb}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#111110;--surface:#1a1a19;--surface-2:#222220;--border:#2f2f2c;--text:#fff;--text-2:#c3c2b7;--muted:#8f8e86;--good:#4cc28a;--good-bg:#16291f;--warn:#e3a43c;--warn-bg:#2d2414;--bad:#ef7b7a;--bad-bg:#311a1a;--info:#7fa9ec;--info-bg:#18233a}}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#111110;--surface:#1a1a19;--surface-2:#222220;--border:#2f2f2c;--text:#fff;--text-2:#c3c2b7;--muted:#8f8e86;--good:#4cc28a;--good-bg:#16291f;--warn:#e3a43c;--warn-bg:#2d2414;--bad:#ef7b7a;--bad-bg:#311a1a;--info:#7fa9ec;--info-bg:#18233a}
+[hidden]{display:none!important}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,sans-serif}
 nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
 .nav-in{max-width:1080px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px}
@@ -53,6 +54,15 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}th.
 .det{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
 a{color:inherit}
 .small{font-size:12.5px;color:var(--muted)}
+.plano-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.plano-h b{font:700 22px Fraunces,Georgia,serif}
+.usos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+@media (max-width:640px){.usos{grid-template-columns:1fr}}
+.uso small{display:flex;justify-content:space-between;font-size:13px;color:var(--text-2);font-weight:600}
+.uso small span{font-variant-numeric:tabular-nums;color:var(--text)}
+.op{border-color:var(--info)}.op h2::after{content:"Só o operador vê";margin-left:8px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--info-bg);color:var(--info);vertical-align:middle}
+.extras{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:end}
+@media (max-width:640px){.extras{grid-template-columns:1fr 1fr}}
 .msg{font-size:13px;min-height:1em;margin:10px 0 0}.msg.ok{color:var(--good)}.msg.err{color:var(--bad)}
 @media (max-width:760px){thead{display:none}tr{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--border)}td{border:0;padding:0}td.q{grid-column:1/-1;font-size:12.5px;color:var(--muted)}td.o{grid-column:1/-1}td.num{text-align:left}td.r{text-align:right}}
 </style>
@@ -62,8 +72,31 @@ a{color:inherit}
 <nav><div class="nav-in"><div class="tabs"><a href="/">Notícias</a><a href="pauta.html">Pauta do programa</a><a href="consumo.html" class="on" aria-current="page">Consumo</a></div></div></nav>
 <main>
   <h1>Consumo</h1>
-  <p class="sub">Quanto cada geração custou, quem pediu e o controle de quando o painel pode gerar.</p>
+  <p class="sub">O uso do plano no mês, o histórico de tudo o que foi gerado e o controle de quando o painel pode gerar.</p>
   <p id="carregando" class="small">Carregando…</p>
+
+  <section class="card" id="cPlano" hidden>
+    <div class="plano-h"><div><span class="small">Plano contratado</span><br><b id="pNome"></b></div><span class="small" id="pMes"></span></div>
+    <p class="hint" id="pResumo" style="margin:6px 0 0"></p>
+    <div class="usos" id="usos"></div>
+    <p class="small" id="pContato" style="margin:14px 0 0"></p>
+  </section>
+
+  <section class="card op" id="cOpPlano" hidden>
+    <h2>Plano do cliente</h2>
+    <p class="hint">Troca de plano vale em cerca de 1 minuto. Extras somam ao limite só do mês escolhido.</p>
+    <div class="linha" style="margin-top:0"><label>Plano<select id="opPlano"></select></label><button type="button" class="btn ghost" id="opSalvaPlano">Trocar plano</button></div>
+    <div style="margin-top:16px;font-size:13px;font-weight:700">Liberar extras no mês <input type="month" id="opMes" style="margin-left:6px"></div>
+    <div class="extras" style="margin-top:8px">
+      <label>Edições de notícias<input type="number" min="0" id="exN" inputmode="numeric"></label>
+      <label>Pautas do programa<input type="number" min="0" id="exP" inputmode="numeric"></label>
+      <label>Itens avulsos<input type="number" min="0" id="exA" inputmode="numeric"></label>
+      <button type="button" class="btn ghost" id="opSalvaEx">Salvar extras</button>
+    </div>
+    <label style="margin-top:14px">Contato exibido ao cliente<input id="opContato" maxlength="160"></label>
+    <div class="linha" style="margin-top:8px"><button type="button" class="btn ghost" id="opSalvaCont">Salvar contato</button></div>
+    <p class="msg" id="m3" role="status"></p>
+  </section>
 
   <section class="card" id="cGer" hidden>
     <h2>Geração</h2>
@@ -73,7 +106,7 @@ a{color:inherit}
       <button type="button" class="est" data-e="manual" aria-pressed="false"><b>✋ Só manual</b><small>Agendadas suspensas. Os botões do painel continuam funcionando.</small></button>
       <button type="button" class="est" data-e="pausado" aria-pressed="false"><b>⏸ Pausada</b><small>Nada é gerado, nem pelos botões. Excluir item da pauta continua possível.</small></button>
     </div>
-    <div class="linha">
+    <div class="linha" id="orcLinha">
       <label>Orçamento mensal (US$)<input type="number" id="orc" min="0" step="1" inputmode="decimal" style="width:140px"></label>
       <button type="button" class="btn ghost" id="salvaOrc">Salvar orçamento</button>
       <span class="small">Ao atingir o valor, a geração para até o mês virar. 0 = sem limite.</span>
@@ -82,7 +115,7 @@ a{color:inherit}
     <p class="msg" id="m1" role="status"></p>
   </section>
 
-  <section class="card" id="cMod" hidden>
+  <section class="card op" id="cMod" hidden>
     <h2>Modelo por rotina</h2>
     <p class="hint">Modelos mais leves custam menos e podem perder um pouco de profundidade. Compare pelo histórico abaixo.</p>
     <div class="modelos">
@@ -97,13 +130,14 @@ a{color:inherit}
 
   <section class="card" id="cHist" hidden>
     <h2>Histórico de gerações</h2>
-    <p class="hint">Custo calculado a partir dos tokens de cada geração, pelos preços da API. A cobrança oficial fica no Console da Anthropic.</p>
+    <p class="hint soop">Custo calculado a partir dos tokens de cada geração, pelos preços da API. A cobrança oficial fica no Console da Anthropic.</p>
     <div class="filtros" id="filtros">
       <button type="button" data-f="todas" aria-pressed="true">Todas</button>
       <button type="button" data-f="planejada" aria-pressed="false">Planejadas</button>
       <button type="button" data-f="manual" aria-pressed="false">Manuais</button>
     </div>
-    <table><thead><tr><th>Quando</th><th>O quê</th><th>Origem</th><th>Modelo</th><th class="num">Duração</th><th class="num">Custo</th><th>Resultado</th></tr></thead><tbody id="lista"></tbody></table>
+    <table><thead><tr><th>Quando</th><th>O quê</th><th>Origem</th><th class="soop">Modelo</th><th class="num">Duração</th><th class="num soop">Custo</th><th>Resultado</th></tr></thead><tbody id="lista"></tbody></table>
+    <p style="text-align:center;margin:12px 0 0"><button type="button" class="btn ghost" id="mais" hidden>Ver mais</button></p>
   </section>
 </main>
 <div class="toast" id="toast"></div>
@@ -113,7 +147,7 @@ const $=s=>document.querySelector(s),esc=Painel.esc;
 const NIVEL={economico:"Econômico · Haiku 4.5",equilibrado:"Equilibrado · Sonnet 5.5",maximo:"Máximo · Opus 5.5"};
 const NOME_MOD=m=>{const x=/claude-(haiku|sonnet|opus)-(\d+)-(\d+)/.exec(m||"");return x?x[1][0].toUpperCase()+x[1].slice(1)+" "+x[2]+"."+x[3]:(m||"—")};
 const ROT={noticias:"Edição de notícias",programa:"Pauta do programa",avulso:"Item avulso",excluir:"Item retirado"};
-let D=null,SHA=null,FIL="todas";
+let D=null,SHA=null,FIL="todas",QTD=30;
 const usd=v=>v==null?"—":"US$ "+(v>0&&v<0.01?v.toFixed(3):v.toFixed(2)).replace(".",",");
 const MID={economico:"haiku",equilibrado:"sonnet",maximo:"opus"};
 const dur=s=>s==null?"—":s<60?s+" s":Math.round(s/60)+" min";
@@ -121,9 +155,25 @@ const quando=s=>new Date(s).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"
 const mesAtual=()=>new Date(Date.now()-3*36e5).toISOString().slice(0,7);
 const media=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
 async function api(body){const r=await fetch("/api/consumo",{method:body?"POST":"GET",headers:{"Content-Type":"application/json"},cache:"no-store",body:body?JSON.stringify({...body,sha:SHA}):undefined});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||"Erro "+r.status);return j}
+const NUSO={noticias:"Edições de notícias",programa:"Pautas do programa",avulso:"Itens avulsos"};
+function pintaPlano(){
+  const P=D.plano,U=D.uso;
+  $("#pNome").textContent=P.nome;$("#pResumo").textContent=P.resumo||"";
+  $("#pMes").textContent="Uso em "+new Date(D.mes+"-15").toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+  $("#usos").innerHTML=Object.keys(NUSO).map(r=>{const u=U[r]||0,l=P.limites[r]||0,ex=P.extras[r]||0,pc=l?Math.min(100,u/l*100):0;
+    return `<div class="uso"><small>${NUSO[r]}<span>${u} de ${l}</span></small><div class="barra"><i style="width:${pc.toFixed(1)}%;${u>=l?"background:var(--bad)":pc>=80?"background:var(--warn)":""}"></i></div>${ex?`<span class="small">inclui ${ex} extras liberados neste mês</span>`:""}</div>`}).join("");
+  $("#pContato").innerHTML=`Precisa de mais edições, pautas ou itens avulsos, ou quer mudar de plano? Fale com ${esc(P.contato||"o suporte")}.`;
+  if(D.operador){
+    $("#opPlano").innerHTML=Object.entries(D.catalogo).map(([k,v])=>`<option value="${k}">${esc(v.nome)} · R$ ${v.preco_brl.toLocaleString("pt-BR")}/mês</option>`).join("");$("#opPlano").value=P.id;
+    if(!$("#opMes").value)$("#opMes").value=D.mes;$("#exN").value=P.extras.noticias||"";$("#exP").value=P.extras.programa||"";$("#exA").value=P.extras.avulso||"";
+    $("#opContato").value=P.contato||"";
+  }
+}
 function pinta(){
   const C=D.controle,E=(D.historico.execucoes||[]).slice().reverse(),cli=Painel.cliente||{};
+  pintaPlano();
   document.querySelectorAll(".est").forEach(b=>b.setAttribute("aria-pressed",b.dataset.e===C.estado));
+  if(!D.operador){pintaHist(E);return}
   $("#orc").value=C.orcamento_mensal_usd||0;
   document.querySelectorAll("[data-m]").forEach(s=>{s.innerHTML=Object.entries(NIVEL).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");s.value=C.modelos[s.dataset.m]});
   const mes=E.filter(e=>String(e.inicio).startsWith(mesAtual())),gasto=mes.reduce((a,e)=>a+(e.custo_usd||0),0),orc=+C.orcamento_mensal_usd||0;
@@ -143,16 +193,25 @@ function pinta(){
     ["Por item avulso",usd(mA),sub(RA,"avulso")],
   ].map(([t,v,s])=>`<div class="tile"><small>${t}</small><b>${v}</b><span>${s}</span></div>`).join("")+
   `<div class="tile" style="grid-column:1/-1"><small>Projeção mensal com a agenda automática ligada</small><b>${mN==null&&mP==null?"—":usd(proj)}</b><span>${ed} edições de notícias por dia e pauta em ${dias} dias por semana, pelo custo médio medido${mN==null||mP==null?" (falta medir "+(mN==null?"notícias":"a pauta")+")":""}. Itens avulsos à parte.</span></div>`;
-  const L=E.filter(e=>FIL==="todas"||e.origem===FIL);
+  pintaHist(E);
+}
+function pintaHist(E){
+  const T=E.filter(e=>FIL==="todas"||e.origem===FIL),L=T.slice(0,QTD),op=D.operador;
+  document.querySelectorAll(".soop").forEach(x=>x.hidden=!op);$("#mais").hidden=T.length<=QTD;$("#mais").textContent=`Ver mais (${T.length-L.length} anteriores)`;
   $("#lista").innerHTML=L.map(e=>{const a=e.artefato||{},ok=e.resultado==="sucesso";
     return `<tr><td class="q">${quando(e.inicio)}</td>
       <td class="o"><b>${a.link&&ok?`<a href="${esc(a.link)}">${esc(ROT[e.rotina]||a.tipo)}</a>`:esc(ROT[e.rotina]||a.tipo)}</b>${a.id?` <span class="small">${esc(a.id)}</span>`:""}${a.detalhe?`<span class="det">${esc(a.detalhe)}</span>`:""}</td>
       <td><span class="pill ${e.origem==="planejada"?"plan":"man"}">${e.origem==="planejada"?"Planejada":"Manual"}</span>${e.usuario?`<span class="det">${esc(e.usuario)}</span>`:""}</td>
-      <td class="small">${esc((e.modelos&&e.modelos.length?e.modelos:[e.modelo_escolhido]).map(NOME_MOD).join(", "))}${e.turnos?`<span class="det">${e.turnos} passos${e.buscas_web?` · ${e.buscas_web} buscas`:""}</span>`:""}</td>
-      <td class="num">${dur(e.duracao_s)}</td><td class="num"><b>${e.rotina==="excluir"?"—":usd(e.custo_usd)}</b></td>
+      ${op?`<td class="small">${esc((e.modelos&&e.modelos.length?e.modelos:[e.modelo_escolhido]).map(NOME_MOD).join(", "))}${e.turnos?`<span class="det">${e.turnos} passos${e.buscas_web?` · ${e.buscas_web} buscas`:""}</span>`:""}</td>`:""}
+      <td class="num">${dur(e.duracao_s)}</td>${op?`<td class="num"><b>${e.rotina==="excluir"?"—":usd(e.custo_usd)}</b></td>`:""}
       <td class="r"><span class="pill ${ok?"ok":"err"}">${esc(e.resultado)}</span>${e.execucao_url?`<span class="det"><a href="${esc(e.execucao_url)}" target="_blank" rel="noopener">detalhes</a></span>`:""}</td></tr>`}).join("")||`<tr><td colspan="7" class="small" style="padding:16px 8px">Nenhuma geração registrada ainda. O registro começa na próxima geração.</td></tr>`;
 }
-async function carrega(){D=await api();SHA=D.sha;pinta();["#carregando"].forEach(s=>$(s)&&$(s).remove());["#cGer","#cMod","#tiles","#cHist"].forEach(s=>$(s).hidden=false)}
+async function carrega(){D=await api();SHA=D.sha;pinta();$("#carregando")&&$("#carregando").remove();
+  ["#cPlano","#cGer","#cHist"].forEach(s=>$(s).hidden=false);["#cOpPlano","#cMod","#tiles"].forEach(s=>$(s).hidden=!D.operador);$("#orcLinha").hidden=$("#orcBarra").hidden=!D.operador}
+async function salvaPlano(body,ok){msg($("#m3"),"Salvando…");try{await api({plano:body});msg($("#m3"),ok,"ok");setTimeout(()=>carrega().catch(()=>{}),70000)}catch(err){msg($("#m3"),err.message,"err")}}
+$("#opSalvaPlano").onclick=()=>{if(confirm("Trocar o plano deste cliente?"))salvaPlano({id:$("#opPlano").value},"Plano trocado. Vale em cerca de 1 minuto.")};
+$("#opSalvaEx").onclick=()=>salvaPlano({mes:$("#opMes").value,extras:{noticias:$("#exN").value,programa:$("#exP").value,avulso:$("#exA").value}},"Extras liberados. Valem em cerca de 1 minuto.");
+$("#opSalvaCont").onclick=()=>salvaPlano({contato:$("#opContato").value},"Contato salvo.");
 function msg(el,t,c){el.className="msg"+(c?" "+c:"");el.textContent=t}
 document.querySelectorAll(".est").forEach(b=>b.onclick=async()=>{const e=b.dataset.e;if(e===D.controle.estado)return;
   if(e==="ativo"&&!confirm("Ligar as gerações agendadas? Elas passam a rodar sozinhas nos horários configurados e geram custo."))return;
@@ -161,7 +220,8 @@ document.querySelectorAll(".est").forEach(b=>b.onclick=async()=>{const e=b.datas
   catch(err){msg($("#m1"),err.message,"err")}document.querySelectorAll(".est").forEach(x=>x.disabled=false)});
 $("#salvaOrc").onclick=async()=>{msg($("#m1"),"Salvando…");try{const j=await api({orcamento_mensal_usd:+$("#orc").value||0});D.controle=j.controle;SHA=j.sha;pinta();msg($("#m1"),"Orçamento salvo.","ok")}catch(err){msg($("#m1"),err.message,"err")}};
 document.querySelectorAll("[data-m]").forEach(s=>s.onchange=async()=>{msg($("#m2"),"Salvando…");try{const j=await api({modelos:{[s.dataset.m]:s.value}});D.controle=j.controle;SHA=j.sha;pinta();msg($("#m2"),"Modelo salvo. Vale a partir da próxima geração.","ok")}catch(err){msg($("#m2"),err.message,"err");s.value=D.controle.modelos[s.dataset.m]}});
-$("#filtros").onclick=e=>{const b=e.target.closest("button");if(!b)return;FIL=b.dataset.f;document.querySelectorAll("#filtros button").forEach(x=>x.setAttribute("aria-pressed",x===b));pinta()};
+$("#mais").onclick=()=>{QTD+=50;pinta()};
+$("#filtros").onclick=e=>{const b=e.target.closest("button");if(!b)return;FIL=b.dataset.f;QTD=30;document.querySelectorAll("#filtros button").forEach(x=>x.setAttribute("aria-pressed",x===b));pinta()};
 Painel.pronto.then(carrega).catch(e=>{$("#carregando").textContent="Não consegui carregar: "+e.message});
 </script>
 </body>
