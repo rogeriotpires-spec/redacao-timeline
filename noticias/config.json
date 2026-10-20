@@ -93,14 +93,6 @@
  ],
  "outlets": [
   {
-   "name": "G1",
-   "url": "https://g1.globo.com",
-   "camp": "centro",
-   "fetch": false,
-   "note": "O G1 bloqueia leitura automática. Entra quando aparece na busca ou é citado por outro portal; a ausência dele não conta para a nota nem para a assimetria.",
-   "tier": 1
-  },
-  {
    "name": "O Globo",
    "url": "https://oglobo.globo.com",
    "camp": "centro",
@@ -437,14 +429,14 @@
    "tier": 2
   },
   {
-   "name": "Diário do Rio",
-   "url": "https://diariodorio.com",
+   "name": "Revista Veja",
+   "url": "https://veja.abril.com.br",
    "camp": "regional",
    "tier": 2
   },
   {
-   "name": "Meia Hora",
-   "url": "https://www.meiahora.com.br",
+   "name": "G1",
+   "url": "https://www.g1.globo.com",
    "camp": "regional",
    "tier": 3
   }
