@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     # cliente.json e o logo passam antes por "Aplicar configurações", que grava e dispara esta publicação
-    paths-ignore: ["cliente.json", "marca/**"]
+    paths-ignore: ["cliente.json", "marca/**", "controle.json", "historico/**"]
   workflow_dispatch:
 
 permissions:

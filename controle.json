@@ -1,0 +1,5 @@
+{
+  "estado": "manual",
+  "orcamento_mensal_usd": 0,
+  "modelos": {"noticias": "economico", "programa": "equilibrado", "avulso": "equilibrado"}
+}

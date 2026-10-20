@@ -21,6 +21,8 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
+      - name: Marcar o início
+        run: echo "INICIO=$(date -u +%FT%TZ)" >> "$GITHUB_ENV"
       - name: Esperar a vez (outra ação mexendo no mesmo arquivo)
         run: python3 tools/esperar.py programa.yml programa-avulso.yml pauta-excluir.yml
       - name: Excluir e publicar no repositório
@@ -36,6 +38,24 @@ jobs:
             sleep $((i*3))
           done
           exit 1
+      - name: Registrar consumo (custo, tokens e o que foi gerado)
+        if: always()
+        env:
+          GHT: ${{ github.token }}
+          USUARIO: ${{ inputs.usuario }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GHT}@github.com/${{ github.repository }}.git"
+          F="${{ steps.claude.outputs.execution_file }}"; rm -f /tmp/exec.json; [ -n "$F" ] && [ -f "$F" ] && cp "$F" /tmp/exec.json || true
+          for i in 1 2 3 4; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            python3 tools/controle.py registrar excluir "${{ github.event_name }}" "$USUARIO" "$INICIO" "${{ job.status }}" 
+            git add historico/consumo.json; git diff --cached --quiet && break
+            git commit -qm "Consumo: excluir" && git push -q origin HEAD:main && break
+            sleep $((i*3))
+          done
       - name: PDF e publicação
         if: always()
         env:

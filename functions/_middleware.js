@@ -23,7 +23,7 @@ export async function onRequest(ctx) {
     const destino = /^\/[a-z0-9-]*(\.html)?$/i.test(path) ? path + url.search : "/";
     return Response.redirect(`${url.origin}/login.html?next=${encodeURIComponent(destino)}`, 302);
   }
-  if ((limpo === "/admin" || limpo === "/configuracoes" || path.startsWith("/api/usuarios") || path.startsWith("/api/config")) && u.papel !== "admin") {
+  if ((limpo === "/admin" || limpo === "/configuracoes" || limpo === "/consumo" || path.startsWith("/historico/") || path.startsWith("/api/consumo") || path.startsWith("/api/usuarios") || path.startsWith("/api/config")) && u.papel !== "admin") {
     return path.startsWith("/api/") ? json({ error: "Só administradores." }, 403) : Response.redirect(url.origin + "/", 302);
   }
   ctx.data.usuario = u;
