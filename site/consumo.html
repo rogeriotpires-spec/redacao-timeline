@@ -111,7 +111,7 @@ a{color:inherit}
 <script>
 const $=s=>document.querySelector(s),esc=Painel.esc;
 const NIVEL={economico:"Econômico · Haiku 4.5",equilibrado:"Equilibrado · Sonnet 5.5",maximo:"Máximo · Opus 5.5"};
-const NOME_MOD=m=>/haiku/.test(m)?"Haiku 4.5":/sonnet/.test(m)?"Sonnet 5.5":/opus/.test(m)?"Opus 5.5":(m||"—");
+const NOME_MOD=m=>{const x=/claude-(haiku|sonnet|opus)-(\d+)-(\d+)/.exec(m||"");return x?x[1][0].toUpperCase()+x[1].slice(1)+" "+x[2]+"."+x[3]:(m||"—")};
 const ROT={noticias:"Edição de notícias",programa:"Pauta do programa",avulso:"Item avulso",excluir:"Item retirado"};
 let D=null,SHA=null,FIL="todas";
 const usd=v=>v==null?"—":"US$ "+(v>0&&v<0.01?v.toFixed(3):v.toFixed(2)).replace(".",",");
