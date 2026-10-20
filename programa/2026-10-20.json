@@ -2,26 +2,90 @@
  "date": "2026-10-20",
  "generated": "2026-10-20T06:15:04-03:00",
  "programa": "Conversa Timeline",
- "titulo": "Lula promete abrir sigilos ao TSE sob pressão da CPMI sobre Lulinha, e reajuste do Bolsa Família feito em segredo chega às contas antes do segundo turno",
- "abertura": "A cinco dias do segundo turno, Lula promete entregar hoje ao TSE a autorização para abrir os sigilos dele e dos cinco filhos, no mesmo momento em que o Congresso colhe assinaturas para uma CPMI sobre Lulinha e a lobista Roberta Luchsinger. O Bolsa Família reajustado em 15% cai na conta de todas as famílias até amanhã, depois de um decreto preparado em papel e sob sigilo. No STF, a PGR desmonta o pedido de Moraes para investigar André Mendonça, enquanto Zanin ouve as partes sobre a eleição já decidida no Rio. Fechamos com a PEC da Segurança engavetada até depois da eleição, a ofensiva da PF contra a internet do Comando Vermelho e o caos nas ruas da França.",
+ "titulo": "Campanha de Flávio propõe dois anos de Bolsa Família para quem arrumar emprego, e Lula promete abrir sigilos ao TSE sob pressão da CPMI sobre Lulinha",
+ "abertura": "A cinco dias do segundo turno, a campanha de Flávio Bolsonaro propõe manter o Bolsa Família por dois anos para quem arrumar emprego, enquanto o governo paga até amanhã o reajuste de 15% montado em um dia e fora do sistema eletrônico. Lula promete entregar hoje ao TSE a autorização para abrir os sigilos dele e dos cinco filhos, no momento em que o Congresso colhe assinaturas para uma CPMI sobre Lulinha e a lobista Roberta Luchsinger. No STF, a PGR desmonta o pedido de Moraes para investigar André Mendonça, e Zanin ouve as partes sobre a eleição já decidida no Rio. Fechamos com a PEC da Segurança engavetada até depois da eleição, a ofensiva da PF contra a internet do Comando Vermelho e o caos nas ruas da França.",
  "agenda": [
   {
    "time": "Ao longo do dia",
    "text": "Lula promete entregar ao presidente do TSE, Nunes Marques, a autorização para quebra dos sigilos bancário e telefônico dele e dos cinco filhos.",
-   "source": {"name": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-diz-que-levara-na-3a-feira-ao-tse-autorizacao-para-quebrar-sigilo/"}
+   "source": {
+    "name": "Poder360",
+    "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-diz-que-levara-na-3a-feira-ao-tse-autorizacao-para-quebrar-sigilo/"
+   }
   },
   {
    "time": "Ao longo do dia",
    "text": "Bolsa Família paga hoje o NIS final 2; amanhã (21) o pagamento é unificado para os finais 3 a 0, antes do segundo turno.",
-   "source": {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/pagamentos-de-outubro-do-bolsa-familia-comecam-nesta-segunda"}
+   "source": {
+    "name": "Agência Brasil",
+    "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/pagamentos-de-outubro-do-bolsa-familia-comecam-nesta-segunda"
+   }
   },
   {
    "time": "Sessão do dia",
    "text": "Alerj volta a discutir o projeto de renegociação de dívidas com o Estado do Rio, com descontos de até 70% em multas e juros.",
-   "source": {"name": "Diário do Rio", "url": "https://diariodorio.com/economia/2026/10/19/alerj-vota-projeto-que-muda-renegociacao-de-dividas-com-o-estado-do-rio.html"}
+   "source": {
+    "name": "Diário do Rio",
+    "url": "https://diariodorio.com/economia/2026/10/19/alerj-vota-projeto-que-muda-renegociacao-de-dividas-com-o-estado-do-rio.html"
+   }
   }
  ],
  "itens": [
+  {
+   "id": "bolsa-familia",
+   "bloco": "Economia",
+   "titulo": "Campanha de Flávio propõe dois anos de Bolsa Família para quem arrumar emprego",
+   "subtitulo": "Regra de transição vem após reajuste de 15% do governo, feito em um dia e fora do sistema eletrônico, e pagamento antecipado antes do segundo turno",
+   "resumo": "A campanha de Flávio Bolsonaro propõe que o beneficiário que conseguir emprego formal ou abrir um negócio continue recebendo o Bolsa Família por dois anos, com volta automática ao programa se perder a vaga. A coordenadora econômica Daniella Marques disse que as pessoas não podem ficar presas para sempre no programa e que não haverá corte de benefícios. A proposta mira a porta de saída pelo trabalho, e não o fim do programa que a campanha petista tenta pintar. Do outro lado, o governo montou em um dia, em papel e longe do sistema eletrônico, o reajuste de 15% que eleva o piso a R$ 691 e antecipou o pagamento de outubro para terminar amanhã. A decisão de R$ 22,7 bilhões em 2027, tomada às pressas e com remanejamento de R$ 20 bilhões ainda sem origem explicada, merece explicação, e não só aplauso.",
+   "contexto": [
+    "Daniella Marques falou à CBN Bahia na segunda, 19: quem arrumar emprego formal ou abrir empresa segue recebendo por dois anos, e o pagamento só acaba depois de mais de 24 meses; quem perder a vaga pode voltar ao programa.",
+    "Em junho, Flávio já defendia manter o Bolsa Família e ampliar a transição, argumentando que quase 70% dos beneficiários trabalham na informalidade por medo de perder o benefício.",
+    "O governo Lula reduziu a regra de transição de 24 para 12 meses em maio de 2025.",
+    "Ofícios, notas técnicas e pareceres do reajuste foram produzidos em 16 de setembro; o anúncio saiu no dia 17 e os papéis só entraram no processo eletrônico em 1º de outubro.",
+    "Correção de 15,04%: piso de R$ 600 para R$ 691; custo de R$ 5,8 bilhões em 2026 e R$ 22,7 bilhões em 2027.",
+    "O calendário original ia até 30 de outubro; agora todos recebem até 21 de outubro, sob a justificativa de proteger famílias do El Niño."
+   ],
+   "angulo": [
+    "Dois anos de transição protegem a família e premiam o trabalho: quem pega a carteira assinada não pode ser punido por isso.",
+    "Dizer que a proposta é fim do programa é distorcer: a campanha fala em manter o benefício, sem corte, e em dar saída pelo emprego.",
+    "Decreto bilionário feito em um dia, em papel e sob sigilo, é o oposto da transparência que o governo cobra dos adversários.",
+    "Antecipar o pagamento para antes da eleição e chamar isso de medida climática ofende a inteligência do eleitor; responsabilidade fiscal é dizer de onde sai o dinheiro."
+   ],
+   "perguntas": [
+    "Uma regra de transição de dois anos ajuda o beneficiário a sair do programa pelo emprego formal?",
+    "Por que o governo reduziu a transição para 12 meses e agora acusa a proposta de cortar o benefício?",
+    "Quem vai pagar a conta de R$ 22,7 bilhões do reajuste em 2027?"
+   ],
+   "metafora": "É como reformar a casa inteira numa noite, sem planta e sem nota fiscal, e só mostrar os papéis duas semanas depois da festa de inauguração.",
+   "fontes": [
+    {
+     "name": "Revista Oeste",
+     "url": "https://revistaoeste.com/politica/governo-lula-preparou-reajuste-do-bolsa-familia-em-um-dia/"
+    },
+    {
+     "name": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/eleicoes/bolsa-familia-tera-regra-de-transicao-de-dois-anos-diz-campanha-de-flavio/"
+    },
+    {
+     "name": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/pagamentos-de-outubro-do-bolsa-familia-comecam-nesta-segunda"
+    },
+    {
+     "name": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/governo-pretende-realocar-r-20-bilhoes-no-orcamento-de-2027"
+    },
+    {
+     "name": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/republica/flavio-bolsonaro-defende-bolsa-familia-e-fala-em-evitar-erros-do-pai/"
+    }
+   ],
+   "avulsa": true,
+   "pedido": "Campanha de Flávio propõe transição de dois anos para quem deixar o Bolsa Família com emprego https://www.cnnbrasil.com.br/eleicoes/bolsa-familia-tera-regra-de-transicao-de-dois-anos-diz-campanha-de-flavio/",
+   "fundido": [
+    "Governo preparou reajuste do Bolsa Família em um dia e fora do sistema eletrônico"
+   ],
+   "atencao": "A regra é a descrição da própria campanha, sem detalhe de como seria aplicada; o reajuste do governo tem respaldo legal e a crítica é ao método e ao momento."
+  },
   {
    "id": "sigilos-cpmi",
    "bloco": "Política nacional",
@@ -48,11 +112,26 @@
    ],
    "atencao": "Lulinha e Luchsinger são investigados, sem denúncia nem condenação; as falas de Luchsinger não vieram acompanhadas de provas.",
    "fontes": [
-    {"name": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/lula-anuncia-autorizacao-ao-tse-para-quebra-de-sigilos-dele-e-dos-filhos-e-desafia-flavio/"},
-    {"name": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/republica/trafico-influencia-relacoes-empresarios-roberta-pode-revelar-lula-filho/"},
-    {"name": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-diz-que-levara-na-3a-feira-ao-tse-autorizacao-para-quebrar-sigilo/"},
-    {"name": "Metrópoles", "url": "https://www.metropoles.com/colunas/grande-angular/senador-diz-que-pt-orienta-apoio-a-cpmi-de-luchsinger-nada-a-temer"},
-    {"name": "CNN Brasil", "url": "https://www.cnnbrasil.com.br/politica/advogado-de-lulinha-ele-nao-despachava-com-ministros-relacao-era-social/"}
+    {
+     "name": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/eleicoes/2026/lula-anuncia-autorizacao-ao-tse-para-quebra-de-sigilos-dele-e-dos-filhos-e-desafia-flavio/"
+    },
+    {
+     "name": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/republica/trafico-influencia-relacoes-empresarios-roberta-pode-revelar-lula-filho/"
+    },
+    {
+     "name": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-diz-que-levara-na-3a-feira-ao-tse-autorizacao-para-quebrar-sigilo/"
+    },
+    {
+     "name": "Metrópoles",
+     "url": "https://www.metropoles.com/colunas/grande-angular/senador-diz-que-pt-orienta-apoio-a-cpmi-de-luchsinger-nada-a-temer"
+    },
+    {
+     "name": "CNN Brasil",
+     "url": "https://www.cnnbrasil.com.br/politica/advogado-de-lulinha-ele-nao-despachava-com-ministros-relacao-era-social/"
+    }
    ]
   },
   {
@@ -79,39 +158,10 @@
     "Qual o peso do Nordeste e do Sudeste na decisão de domingo?"
    ],
    "fontes": [
-    {"name": "Poder360", "url": "https://www.poder360.com.br/poderdata/flavio-reage-e-vai-a-52-contra-48-de-lula-diz-poderdata-aya/"}
-   ]
-  },
-  {
-   "id": "bolsa-familia",
-   "bloco": "Economia",
-   "titulo": "Governo preparou reajuste do Bolsa Família em um dia e fora do sistema eletrônico",
-   "subtitulo": "Aumento de 15% custa R$ 22,7 bilhões em 2027, e o pagamento de outubro foi antecipado para terminar antes do segundo turno",
-   "resumo": "Documentos obtidos por Lei de Acesso mostram que o reajuste do Bolsa Família foi montado em 16 de setembro, véspera do anúncio, em papel e longe do sistema eletrônico. O piso subiu de R$ 600 para R$ 691, e o pagamento de outubro foi unificado para terminar amanhã, quatro dias antes da eleição. Decisão de R$ 22,7 bilhões tomada às pressas e sob sigilo, a semanas do voto, merece explicação, e não só aplauso. O próprio governo admite que vai remanejar R$ 20 bilhões do Orçamento de 2027 sem dizer de onde sai o dinheiro. A proposta de Flávio de manter o benefício por dois anos para quem arrumar emprego mira a porta de saída, e não o corte que a campanha petista anuncia.",
-   "contexto": [
-    "Ofícios, notas técnicas e pareceres foram produzidos em 16 de setembro; o anúncio saiu no dia 17, a 17 dias do primeiro turno, e os papéis só entraram no processo eletrônico em 1º de outubro.",
-    "Correção de 15,04%: piso de R$ 600 para R$ 691; custo de R$ 5,8 bilhões em 2026 e R$ 22,7 bilhões em 2027.",
-    "O calendário original ia até 30 de outubro; agora todos recebem até 21 de outubro, sob a justificativa de proteger famílias do El Niño.",
-    "O Planejamento vai remanejar cerca de R$ 20 bilhões do Orçamento de 2027 e não detalhou quais despesas serão cortadas.",
-    "Daniella Marques, da campanha de Flávio, disse que quem conseguir emprego formal ou abrir empresa segue recebendo por dois anos, como na regra do governo Bolsonaro."
-   ],
-   "angulo": [
-    "Decreto bilionário feito em um dia, em papel e sob sigilo, é o oposto da transparência que o governo cobra dos adversários.",
-    "Antecipar o pagamento para antes da eleição e chamar isso de medida climática ofende a inteligência do eleitor.",
-    "Responsabilidade fiscal é dizer de onde sai o dinheiro; prometer remanejar R$ 20 bilhões sem apontar cortes empurra a conta para o próximo governo.",
-    "Regra de transição para quem consegue emprego protege a família e premia o trabalho; dizer que é fim do programa é distorcer a proposta."
-   ],
-   "perguntas": [
-    "Por que um reajuste desse tamanho precisou ser preparado em sigilo e fora do sistema eletrônico?",
-    "Quem vai pagar a conta de R$ 22,7 bilhões em 2027?",
-    "Uma regra de transição de dois anos ajuda o beneficiário a sair do programa pelo emprego?"
-   ],
-   "metafora": "É como reformar a casa inteira numa noite, sem planta e sem nota fiscal, e só mostrar os papéis duas semanas depois da festa de inauguração.",
-   "fontes": [
-    {"name": "Revista Oeste", "url": "https://revistaoeste.com/politica/governo-lula-preparou-reajuste-do-bolsa-familia-em-um-dia/"},
-    {"name": "CNN Brasil", "url": "https://www.cnnbrasil.com.br/eleicoes/bolsa-familia-tera-regra-de-transicao-de-dois-anos-diz-campanha-de-flavio/"},
-    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/pagamentos-de-outubro-do-bolsa-familia-comecam-nesta-segunda"},
-    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/governo-pretende-realocar-r-20-bilhoes-no-orcamento-de-2027"}
+    {
+     "name": "Poder360",
+     "url": "https://www.poder360.com.br/poderdata/flavio-reage-e-vai-a-52-contra-48-de-lula-diz-poderdata-aya/"
+    }
    ]
   },
   {
@@ -139,8 +189,14 @@
    ],
    "metafora": "Usar um relatório carimbado como sem valor probatório para investigar um juiz é como multar um motorista com base na previsão do tempo.",
    "fontes": [
-    {"name": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/republica/pgr-e-contra-pedido-de-moraes-para-investigar-mendonca/"},
-    {"name": "Poder360", "url": "https://www.poder360.com.br/poder-justica/pgr-rejeita-abuso-de-autoridade-em-conduta-de-mendonca-no-caso-master/"}
+    {
+     "name": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/republica/pgr-e-contra-pedido-de-moraes-para-investigar-mendonca/"
+    },
+    {
+     "name": "Poder360",
+     "url": "https://www.poder360.com.br/poder-justica/pgr-rejeita-abuso-de-autoridade-em-conduta-de-mendonca-no-caso-master/"
+    }
    ]
   },
   {
@@ -167,8 +223,14 @@
     "Se o STF mudar a regra agora, o que acontece com outras eleições decididas da mesma forma?"
    ],
    "fontes": [
-    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/zanin-pede-parecer-da-pgr-e-agu-sobre-acao-do-psd-por-2-turno-no-rio"},
-    {"name": "SBT News", "url": "https://sbtnews.sbt.com.br/noticia/eleicoes/zanin-da-5-dias-para-tse-explicar-decisao-eleitoral-no-rj"}
+    {
+     "name": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/zanin-pede-parecer-da-pgr-e-agu-sobre-acao-do-psd-por-2-turno-no-rio"
+    },
+    {
+     "name": "SBT News",
+     "url": "https://sbtnews.sbt.com.br/noticia/eleicoes/zanin-da-5-dias-para-tse-explicar-decisao-eleitoral-no-rj"
+    }
    ]
   },
   {
@@ -195,8 +257,14 @@
     "Centralizar a segurança no governo federal tira poder dos governadores?"
    ],
    "fontes": [
-    {"name": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-diz-que-foi-convencido-a-mudar-opiniao-sobre-maioridade-penal/"},
-    {"name": "SBT News", "url": "https://sbtnews.sbt.com.br/noticia/politica/com-bate-cabeca-no-pt-alcolumbre-adia-pec-da-seguranca"}
+    {
+     "name": "Poder360",
+     "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-diz-que-foi-convencido-a-mudar-opiniao-sobre-maioridade-penal/"
+    },
+    {
+     "name": "SBT News",
+     "url": "https://sbtnews.sbt.com.br/noticia/politica/com-bate-cabeca-no-pt-alcolumbre-adia-pec-da-seguranca"
+    }
    ]
   },
   {
@@ -224,8 +292,14 @@
    ],
    "atencao": "Márcia e Lucas foram presos, mas não há condenação; usar sempre segundo a PF e investigados.",
    "fontes": [
-    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/mulher-e-filho-de-marcinho-vp-sao-presos-em-operacao-da-pf-no-rio"},
-    {"name": "Jovem Pan", "url": "https://jovempan.com.br/noticias/brasil/entenda-as-investigacoes-contra-o-rapper-oruam-e-sua-familia.html"}
+    {
+     "name": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/mulher-e-filho-de-marcinho-vp-sao-presos-em-operacao-da-pf-no-rio"
+    },
+    {
+     "name": "Jovem Pan",
+     "url": "https://jovempan.com.br/noticias/brasil/entenda-as-investigacoes-contra-o-rapper-oruam-e-sua-familia.html"
+    }
    ]
   },
   {
@@ -252,9 +326,16 @@
     "Que lição a crise francesa deixa para a segurança pública no Brasil?"
    ],
    "fontes": [
-    {"name": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/mundo/como-protestos-de-estudantes-descambaram-para-violencia-e-saques-na-franca/"},
-    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/internacional/noticia/2026-10/franca-quer-impor-toques-de-recolher-apos-fim-de-semana-com-tumultos"}
+    {
+     "name": "Gazeta do Povo",
+     "url": "https://www.gazetadopovo.com.br/mundo/como-protestos-de-estudantes-descambaram-para-violencia-e-saques-na-franca/"
+    },
+    {
+     "name": "Agência Brasil",
+     "url": "https://agenciabrasil.ebc.com.br/internacional/noticia/2026-10/franca-quer-impor-toques-de-recolher-apos-fim-de-semana-com-tumultos"
+    }
    ]
   }
- ]
+ ],
+ "atualizado": "2026-10-20T09:23:11-03:00"
 }
