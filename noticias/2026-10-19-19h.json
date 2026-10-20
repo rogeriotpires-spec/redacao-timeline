@@ -153,6 +153,20 @@
      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPZ09UejVjMGFOX194OUY3eF9FQ05MV1liSy03NHgwbXVfd1I0ZEg1VGRiNVJLbVE0MWdzb2ZSLVBPTXlqMkcwRHJ4dWYwWlVfbGpGZUd4bW5abmxLaFg1Slh0SV9QUXV5VkNraDh1MVBjOFVLUEhZUXgzdzR0VkozblVKUHpQaTBkcHZuZkw1UTRhQks2S1B0TlVWWS1yX1lyYk50eWtwaVJIb0RhcGRBdDVJTlNmUQ?oc=5",
      "camp": "centro",
      "position": "editoria"
+    },
+    {
+     "name": "Brasil 247",
+     "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQQU1vVkRVRE1GbWszZVJodGdLaFNSTG1uWGY1cUNyWVNJYzIycUZhWC1IZC1BOWJpUHh0ZVZHUkdzU1F3WkpFTWdsR2ZKUFdnclF6SW96WTRaUXlSalVrZWxxTF82VXlNTmdnd2c4aTBjNjNYWmZsREI4eHRkWWYtZnJlWjE2UDVlNW9IcTdUZm9Bc1M4Y2c?oc=5",
+     "camp": "esquerda",
+     "position": "editoria",
+     "via": "coleta"
+    },
+    {
+     "name": "BHAZ",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNRzBOcnl4OFNHdWxDQnNwaU9aeVpFOEwzQk5RcG5Vel94cnNlV2xaZ1JtWVF3LWkzMWxrUHV6bEZLN2NXa0FHTUxaMUhBdWs1aVFpU1FZdEtnTDdIS2QxY1c4QUY1YTF6SjFLR05qRUFtT1I0bXVrTnBYbFJnY1BMb3lUTTctZ21tVVQtV2tReGg?oc=5",
+     "camp": "regional",
+     "position": "editoria",
+     "via": "coleta"
     }
    ],
    "asymmetry": {
@@ -347,6 +361,27 @@
      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPWTVSc2JPNDRMSWYtMWkydk9ldE1aZmJyLVRMeXJBYk5mTWM4Vk1KYnpqSHVOU0xoU2dncHJyd243Z0E5WEdqcWZvM2NjbDZsTVZyV2Jab1VXZWdINVJKeWlnQVpwX1MxTmRqMlh2WW1sSmNuVGw4bTd4OUdKN0YzdjNWekNxQmdvMVFPMGRoNGwyQzFaZ3FsdV9QVFVISXJicHh1VlJzTzIzWVpCWWR3b3I3LXNCZ0ZyWkxBUzBxUUlYMmdl?oc=5",
      "camp": "centro-esquerda",
      "position": "editoria"
+    },
+    {
+     "name": "Brasil 247",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOOC11NVFuZ0k5N1QwM2F5U3g2ZTVwY1Bic29JTGVhWi0wUmFsS24wNnBKQ0NaYm5GSjBYb29FQ2JRazVWNXpENUJPQWlJQmpPYnBTZG9tX0NoV25zVnVMeTlJbmM5ZENzdWZ5Qzh5SVVuWnprdzM5VEg1VkVDRUlFLUpuUzg3LTZOYjdBaWZCeFk?oc=5",
+     "camp": "esquerda",
+     "position": "editoria",
+     "via": "coleta"
+    },
+    {
+     "name": "Gazeta do Povo",
+     "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOWUx4a2RWaFNYdHFSTnBaTVBrbkxSUWpQTFI3NFROTkwtb0VJT0dOUU9xZ0lDQkJmWWRxMDFObmdvcl8taFdjaGtfbi0yODJfblFxNmVtZThyU2lrbDRyVWpXakNfS25vNkNwX2EtX0phRWFHRUFFUlk3cmpPNEx5dTRSdUtkbFJMaU81Q1NMa3Q4M0VMeXU5aUxUM2VEckRJMnJidF8yWWJhZVpkTlZ6TXRhMTVjVmIwRUhaZUJSaTE4YzV2azB1ZlhuTXFjSGs?oc=5",
+     "camp": "direita",
+     "position": "editoria",
+     "via": "coleta"
+    },
+    {
+     "name": "BHAZ",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNRzBOcnl4OFNHdWxDQnNwaU9aeVpFOEwzQk5RcG5Vel94cnNlV2xaZ1JtWVF3LWkzMWxrUHV6bEZLN2NXa0FHTUxaMUhBdWs1aVFpU1FZdEtnTDdIS2QxY1c4QUY1YTF6SjFLR05qRUFtT1I0bXVrTnBYbFJnY1BMb3lUTTctZ21tVVQtV2tReGg?oc=5",
+     "camp": "regional",
+     "position": "editoria",
+     "via": "coleta"
     }
    ],
    "asymmetry": {
@@ -504,6 +539,13 @@
      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNWkp3ZnowZy0tSlZJaUJQdG5xWmhLZ3ROOGtLTERidm1sSE8yYTRQTTlTT05VWFp6M3FBcEl0SEFNNG9iNElfSUcwLWh2NnlIN1lSSHlUeEhYZDdHWHpUSWFzVjJkR2xZNmlkSmVZaTZXUmg2QVZ4aXFZRWhEZE1fS3MtdGVWNk5DTW1nU0M4cUlvQWYyV1Vlb1dIWHZ6TDdvSm10aWNWUnZTZ3FVMnZSZm5KTEcxZUIz0gHAAUFVX3lxTE9hNXpaMm1yTWMxaVJCSU13cVpwNE9jeVpEamIzbWNiRXBRV212ZlRUdGFUVTNiZTZpRkxhX2N5bUxnNmtIRTMxR0NxWDRza0Z3M2Y5emM4NUFKZ0t2Ml9Tai1sRTFnMnFRbGVMTGZVUXR3QzlvNzBwOGpYRnhwMUltNW5tUjJmam96RUl6Ynd4cTd5dEczQWM0UTdTX0ptbTFlR1VSdGpGazNybnZrN0t3ejBQcHB1V0tnVXdwNi1jbQ?oc=5",
      "camp": "regional",
      "position": "editoria"
+    },
+    {
+     "name": "Revista Oeste",
+     "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQaVFkZzhiUUtmSE5ORl8zT2t5MS1OMS1tLV80d01vRnNabjk5cVFvNml5WUgyZk5ocWZSSVRQZ0lwNEhpdWV6TnRIcGYtbGxkd1VKOHBTdG5aVHRTcDR2TE5iQjRycHRyaGtncnI1NWtaWDFpaDdiQ1pPd21sR0N5M0I2VXpncVNvdEdzX1lURGZTbVJzYUFLZkRQQmt5SVVnLW1sZVhn?oc=5",
+     "camp": "direita",
+     "position": "editoria",
+     "via": "coleta"
     }
    ],
    "asymmetry": {
@@ -1580,18 +1622,32 @@
    "title": "Ato da direita na UFRN termina em confusão com militantes de esquerda",
    "summary": "Um ato de apoiadores da direita contra Lula no campus central da UFRN, em Natal, terminou em confusão e agressões nesta segunda-feira. O protesto contou com o deputado federal General Girão (PL) e a vereadora Camila Araújo (PL), eleita deputada estadual. Houve troca de socos, um portão foi quebrado e ao menos um jovem ficou ferido. As versões divergem: apoiadores do ato dizem que militantes de esquerda invadiram a manifestação, e estudantes de esquerda acusam os manifestantes de agressão. Viaturas da PM e da PF foram ao campus, e houve denúncia de propaganda irregular à Justiça Eleitoral.",
    "scores": {
-    "cobertura": 2,
+    "cobertura": 5.0,
     "destaque": 3,
     "persistencia": 4,
     "peso_voce": 6
    },
-   "score": 3.5,
+   "score": 4.5,
    "outlets": [
     {
      "name": "Tribuna do Norte",
      "url": "https://tribunadonorte.com.br/natal/ato-politico-na-ufrn-termina-em-confusao-entre-grupos-de-direita-e-esquerda/",
      "camp": "regional",
      "position": "editoria"
+    },
+    {
+     "name": "Brasil 247",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOOC11NVFuZ0k5N1QwM2F5U3g2ZTVwY1Bic29JTGVhWi0wUmFsS24wNnBKQ0NaYm5GSjBYb29FQ2JRazVWNXpENUJPQWlJQmpPYnBTZG9tX0NoV25zVnVMeTlJbmM5ZENzdWZ5Qzh5SVVuWnprdzM5VEg1VkVDRUlFLUpuUzg3LTZOYjdBaWZCeFk?oc=5",
+     "camp": "esquerda",
+     "position": "editoria",
+     "via": "coleta"
+    },
+    {
+     "name": "BHAZ",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNRzBOcnl4OFNHdWxDQnNwaU9aeVpFOEwzQk5RcG5Vel94cnNlV2xaZ1JtWVF3LWkzMWxrUHV6bEZLN2NXa0FHTUxaMUhBdWs1aVFpU1FZdEtnTDdIS2QxY1c4QUY1YTF6SjFLR05qRUFtT1I0bXVrTnBYbFJnY1BMb3lUTTctZ21tVVQtV2tReGg?oc=5",
+     "camp": "regional",
+     "position": "editoria",
+     "via": "coleta"
     }
    ],
    "asymmetry": {
@@ -2161,5 +2217,6 @@
    "item_id": null,
    "fonte": null
   }
- ]
+ ],
+ "portais_na_coleta": 55
 }
