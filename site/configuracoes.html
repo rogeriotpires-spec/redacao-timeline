@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Configurações</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
 nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
 .nav-in{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px}
 .tabs{display:flex;gap:4px;align-items:center;width:100%;flex-wrap:wrap}.tabs a{padding:7px 12px;border-radius:999px;text-decoration:none;color:var(--text-2);font-weight:600;font-size:14px}.tabs a.on{background:var(--text);color:var(--surface)}
-main{max-width:980px;margin:0 auto;padding:22px 16px 120px}
+main{max-width:980px;margin:0 auto;padding:22px 16px calc(130px + env(safe-area-inset-bottom))}
 h1{font:700 30px/1.1 Fraunces,Georgia,serif;margin:0 0 4px}.sub{color:var(--text-2);margin:0 0 20px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:16px}
 .card h2{font-size:17px;margin:0 0 4px}.card .hint{color:var(--muted);font-size:13px;margin:0 0 14px}
@@ -69,7 +69,8 @@ details.base p{margin:8px 0 0;line-height:1.6}
 .ajuste{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap;font-size:13px;color:var(--text-2)}
 .ajuste input[type=color]{width:46px;height:34px;padding:2px;border-radius:8px}
 .barra{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--border);z-index:30}
-.barra-in{max-width:980px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
+.barra-in{max-width:980px;margin:0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px}
+.btn.big{display:block;width:100%;padding:16px;font-size:16px;margin-top:6px}
 .msg{font-size:13.5px;flex:1;min-width:0}.msg.ok{color:var(--good)}.msg.err{color:var(--bad)}
 .small{font-size:13px;color:var(--muted)}
 .carregando{color:var(--muted);padding:30px 0}
@@ -163,9 +164,10 @@ details.base p{margin:8px 0 0;line-height:1.6}
       <p class="hint">Horários das edições (Brasília). Cada edição leva de 20 a 40 minutos e fica pronta perto do horário marcado. Até 6 por dia.</p>
       <div class="chips" id="horas"></div>
     </section>
+    <button class="btn big" type="submit" id="salvar2">💾 Salvar configurações</button>
   </form>
 </main>
-<div class="barra"><div class="barra-in"><span class="msg" id="msg" role="status"></span><button class="btn" id="salvar" form="f" disabled>Salvar</button></div></div>
+<div class="barra"><div class="barra-in"><span class="msg" id="msg" role="status"></span><button class="btn" id="salvar" form="f" disabled>💾 Salvar configurações</button></div></div>
 <div class="toast" id="toast"></div>
 <script src="app.js"></script>
 <script src="paleta.js"></script>
@@ -237,11 +239,11 @@ F.addEventListener("change",e=>{if(e.target.name==="cobertura")cobertura()});
 fetch("/noticias/config.json",{cache:"no-store"}).then(r=>r.json()).then(c=>{const ex=new Set(((CFG&&CFG.regiao&&CFG.regiao.portais)||[]).map(p=>dom(p.url)));
   BASE=(c.outlets||[]).filter(o=>!ex.has(dom(o.url)));$("#baseTxt").textContent=`O painel já lê ${BASE.length} portais em toda edição: os grandes nacionais, agências e os principais jornais de cada estado.`;
   $("#baseLista").textContent=BASE.map(o=>o.name).join(", ")+".";document.querySelectorAll(".portal .u").forEach(u=>u.oninput())}).catch(()=>{});
-F.onsubmit=async e=>{e.preventDefault();const b=$("#salvar");b.disabled=true;msg("Salvando…");
+F.onsubmit=async e=>{e.preventDefault();const b=$("#salvar"),b2=$("#salvar2");b.disabled=b2.disabled=true;msg("Salvando…");
   try{const r=await fetch("/api/config",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cliente:coleta(),logo:LOGO,sha:SHA})});
     const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||"Erro "+r.status);
     SHA=j.sha;LOGO=null;msg("Salvo. O painel está se ajustando; esta página recarrega quando terminar (2 a 4 minutos).","ok");espera()}
-  catch(err){msg(err.message,"err")}b.disabled=false};
+  catch(err){msg(err.message,"err")}b.disabled=b2.disabled=false};
 async function espera(){const v0=Painel.cliente?.versao;const t0=Date.now();
   while(Date.now()-t0<8*60e3){await new Promise(r=>setTimeout(r,15000));
     const c=await fetch("/cliente.json?"+Date.now(),{cache:"no-store"}).then(r=>r.json()).catch(()=>null);
