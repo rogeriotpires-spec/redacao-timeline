@@ -27,7 +27,6 @@
       "STF e instituições",
       "Economia",
       "Segurança pública",
-      "Região",
       "Internacional",
       "Educação"
     ]
@@ -67,14 +66,7 @@
       "\"Rio de Janeiro\" polícia OR operação OR segurança",
       "Niterói OR \"Baixada Fluminense\" OR \"São Gonçalo\""
     ],
-    "portais": [
-      {
-        "name": "Extra",
-        "url": "https://extra.globo.com",
-        "camp": "regional",
-        "tier": 2
-      }
-    ]
+    "portais": []
   },
   "esportes_buscas": [
     "Flamengo OR Fluminense OR Vasco OR Botafogo",
@@ -85,7 +77,7 @@
     "edicoes": [
       "06h",
       "12h",
-      "19h"
+      "18h"
     ]
   },
   "marca": {
