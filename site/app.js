@@ -63,20 +63,35 @@ window.Painel = (() => {
   }
 
   /* menu do usuário no canto da navegação */
+  /* menu do usuário: o botão fica na navegação; a janela vai para o <body> (a barra de abas tem rolagem
+     lateral e cortava a janela no celular). No celular ela abre como painel na base da tela. */
   function menu() {
     const host = document.querySelector(".nav-in .tabs");
     if (!host || !EU) return;
     const w = document.createElement("div"); w.className = "umenu";
-    w.innerHTML = `<button type="button" class="ubtn" aria-haspopup="true">${esc(EU.nome.split(" ")[0])} ▾</button>
-      <div class="upop" hidden><div class="uhead"><b>${esc(EU.nome)}</b><small>${esc(EU.login)} · ${EU.papel === "admin" ? "administrador" : "redação"}</small></div>
-      ${EU.papel === "admin" ? `<a href="/configuracoes.html">Configurações</a><a href="/admin.html">Usuários</a>` : ""}<button type="button" data-u="senha">Trocar senha</button><button type="button" data-u="sair">Sair</button></div>`;
+    w.innerHTML = `<button type="button" class="ubtn" aria-haspopup="menu" aria-expanded="false">${esc(EU.nome.split(" ")[0])} ▾</button>`;
     host.appendChild(w);
-    const pop = w.querySelector(".upop");
-    w.querySelector(".ubtn").onclick = e => { e.stopPropagation(); pop.hidden = !pop.hidden };
-    document.addEventListener("click", () => pop.hidden = true);
-    pop.onclick = e => e.stopPropagation();
+    const fundo = document.createElement("div"); fundo.className = "ufundo"; fundo.hidden = true;
+    const pop = document.createElement("div"); pop.className = "upop"; pop.hidden = true; pop.setAttribute("role", "menu");
+    pop.innerHTML = `<div class="uhead"><b>${esc(EU.nome)}</b><small>${esc(EU.login)} · ${EU.papel === "admin" ? "administrador" : "redação"}</small></div>
+      ${EU.papel === "admin" ? `<a href="/configuracoes.html" role="menuitem">⚙️ Configurações</a><a href="/admin.html" role="menuitem">👥 Usuários</a>` : ""}<button type="button" data-u="senha" role="menuitem">🔑 Trocar senha</button><button type="button" data-u="sair" role="menuitem">↩︎ Sair</button>`;
+    document.body.append(fundo, pop);
+    const btn = w.querySelector(".ubtn");
+    const fecha = () => { pop.hidden = fundo.hidden = true; btn.setAttribute("aria-expanded", "false") };
+    const abre = () => {
+      const celular = matchMedia("(max-width: 640px)").matches;
+      pop.classList.toggle("sheet", celular); fundo.hidden = !celular;
+      if (!celular) { const r = btn.getBoundingClientRect(); pop.style.top = (r.bottom + 6) + "px"; pop.style.left = Math.max(8, Math.min(r.left, innerWidth - 248)) + "px" }
+      else pop.style.top = pop.style.left = "";
+      pop.hidden = false; btn.setAttribute("aria-expanded", "true");
+    };
+    btn.onclick = e => { e.stopPropagation(); pop.hidden ? abre() : fecha() };
+    fundo.onclick = fecha;
+    document.addEventListener("click", e => { if (!pop.contains(e.target)) fecha() });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") fecha() });
+    addEventListener("scroll", () => { if (!pop.classList.contains("sheet")) fecha() }, { passive: true });
     pop.querySelector('[data-u="sair"]').onclick = async () => { await fetch("/api/logout", { method: "POST" }); location.href = "/login.html" };
-    pop.querySelector('[data-u="senha"]').onclick = () => { pop.hidden = true; trocaSenha(false) };
+    pop.querySelector('[data-u="senha"]').onclick = () => { fecha(); trocaSenha(false) };
   }
   function trocaSenha(obrigatoria) {
     const d = document.createElement("div"); d.className = "modal";
@@ -102,6 +117,8 @@ window.Painel = (() => {
     const k = CLI.cores || (CLI.cor ? { primaria: CLI.cor } : null), R = document.documentElement.style;
     if (k) { const v = { "--marca": k.primaria, "--marca-esc": k.escura, "--acento": k.acento, "--destaque": k.destaque, "--sobre-destaque": k.sobre_destaque }; for (const n in v) if (v[n]) R.setProperty(n, v[n]) }
     document.querySelectorAll("[data-cli]").forEach(el => { const k = el.dataset.cli; if (CLI[k] != null) el.textContent = Array.isArray(CLI[k]) ? CLI[k].join(", ") : CLI[k] });
+    const ap = document.getElementById("apres"), L = (CLI.apresentadores || []).filter(Boolean);
+    if (ap) ap.textContent = L.length ? ` Apresentação: ${L.length > 1 ? L.slice(0, -1).join(", ") + " e " + L.at(-1) : L[0]}.` : "";
     if (document.readyState === "loading") await new Promise(r => document.addEventListener("DOMContentLoaded", r));
     menu();
     const who = document.querySelector(".hero .who");
