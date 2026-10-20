@@ -1,6 +1,6 @@
 {
   "plano": "profissional",
-  "operadores": [],
+  "operadores": ["administrador"],
   "extras": {},
   "contato": "Rogerio Pires"
 }
