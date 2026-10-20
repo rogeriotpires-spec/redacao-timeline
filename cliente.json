@@ -2,21 +2,22 @@
   "_doc": "Configuração do cliente. O administrador edita pela tela Configurações do painel; a rotina 'Aplicar configurações' recalcula o resto e publica.",
   "produto": "Redação Inteligente",
   "cliente": "Timeline",
-  "veiculo": "TL TV",
+  "veiculo": "Conversa Timeline",
   "programa": {
     "nome": "Conversa Timeline",
-    "apresentadores": [],
+    "apresentadores": [
+      "Rogerio Pires"
+    ],
     "dias": [
       1,
       2,
-      3,
       4,
       5
     ],
-    "horario": "07:00",
-    "gera_pauta_as": "05:30",
+    "horario": "11:00",
+    "gera_pauta_as": "09:30",
     "virada_hora": 14,
-    "itens": 6,
+    "itens": 8,
     "linhas_resumo": 5,
     "perguntas_por_item": 3,
     "metafora_percentual": 25,
@@ -57,8 +58,8 @@
     "Português do Brasil, frases curtas, sem travessão."
   ],
   "regiao": {
-    "nome": "Rio de Janeiro",
-    "rotulo_bloco": "Rio de Janeiro",
+    "nome": "Brasil",
+    "rotulo_bloco": "Brasil",
     "buscas": [
       "\"governo do Rio\" OR \"Cláudio Castro\" OR Alerj",
       "\"Prefeitura do Rio\" OR \"Câmara do Rio\" OR \"Eduardo Paes\"",
@@ -67,8 +68,8 @@
     ],
     "portais": [
       {
-        "name": "O Dia",
-        "url": "https://odia.ig.com.br",
+        "name": "Globo",
+        "url": "https://g1.com",
         "camp": "regional",
         "tier": 2
       },
@@ -105,14 +106,14 @@
     ]
   },
   "marca": {
-    "logo": null,
-    "cor": "#0b3d91",
+    "logo": "marca/logo.png",
+    "cor": "#683011",
     "cores": {
-      "primaria": "#0b3d91",
-      "escura": "#091936",
-      "acento": "#2d5fb6",
+      "primaria": "#683011",
+      "escura": "#2b1307",
+      "acento": "#8d5134",
       "destaque": "#fad03e",
-      "sobre_destaque": "#091936"
+      "sobre_destaque": "#2b1307"
     }
   }
 }
