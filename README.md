@@ -23,22 +23,15 @@ Senhas ficam com PBKDF2 no KV; a sessão é um cookie assinado, HttpOnly, de 14 
 > Chaves e tokens vão **direto** nas telas de segredos do GitHub e da Cloudflare. Nunca em chat, e-mail ou print.
 
 1. **Repositório privado.** Crie `redacao-<cliente>` como privado a partir deste modelo.
-2. **Token do GitHub** (um por cliente): *fine-grained*, só para o repositório do cliente, com **Actions**, **Contents** e **Workflows** em *Read and write*. Ele é guardado em dois lugares: na Cloudflare (`GH_TOKEN`) e no GitHub (`GH_PAT`).
-3. **Cloudflare:**
-   - Workers & Pages → Create → Pages → *Upload assets* → nome do projeto, por exemplo `redacao-timeline`. Publique qualquer pasta só para criar o projeto.
-   - Workers & Pages → KV → crie o namespace `usuarios-<cliente>`.
-   - No projeto Pages → Settings → Bindings → **KV namespace**: nome da variável `USUARIOS`, escolha o namespace.
-   - No projeto Pages → Settings → Variables and Secrets (tipo **Secret**):
-     - `SESSION_SECRET`: um texto aleatório longo (por exemplo, `openssl rand -base64 48`).
-     - `SETUP_TOKEN`: uma senha de uso único para criar o primeiro administrador.
-     - `GH_TOKEN`: o token do passo 2.
-     - `GH_REPO`: `dono/redacao-<cliente>`.
-   - Crie um token da API da Cloudflare com permissão **Cloudflare Pages: Edit**.
-4. **GitHub** → Settings → Secrets and variables → Actions:
-   - Secrets: `ANTHROPIC_API_KEY` (workspace do cliente no console da Anthropic, com limite de gasto), `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `GH_PAT` (o token do passo 2).
-   - Variables: `CF_PROJECT` = nome do projeto Pages.
-5. **Primeira publicação.** Actions → *Publicar o site* → Run workflow.
-6. **Primeiro administrador.** Abra `https://<projeto>.pages.dev/setup.html`, informe o `SETUP_TOKEN`, nome, usuário e senha. A tela só funciona enquanto não existe nenhum usuário. Depois, apague o `SETUP_TOKEN` na Cloudflare.
+2. **Token do GitHub** (um por cliente): *fine-grained*, só para o repositório do cliente, com **Actions**, **Contents** e **Workflows** em *Read and write*. Ele fica no GitHub como `GH_PAT`; a rotina de publicação o repassa para a Cloudflare.
+3. **Cloudflare** (só duas coisas; o resto a rotina *Publicar o site* faz sozinha):
+   - My Profile → API Tokens → Create Token → *Custom token* com as permissões de conta **Cloudflare Pages: Edit** e **Workers KV Storage: Edit**.
+   - Anote o **Account ID** (aparece na página inicial da conta).
+4. **GitHub** → Settings → Secrets and variables → Actions → Secrets:
+   `ANTHROPIC_API_KEY` (workspace do cliente no console da Anthropic, com limite de gasto), `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `GH_PAT` (o token do passo 2) e `SETUP_TOKEN` (uma senha de uso único para criar o primeiro administrador).
+   O projeto na Cloudflare recebe o nome do repositório; para outro nome, crie a variável `CF_PROJECT`.
+5. **Primeira publicação.** Actions → *Publicar o site* → Run workflow. Ela cria o projeto Pages, a lista de usuários (KV), grava os segredos do site (inclusive um `SESSION_SECRET` aleatório) e publica.
+6. **Primeiro administrador.** Abra `https://<projeto>.pages.dev/setup.html`, informe o `SETUP_TOKEN`, nome, usuário e senha. A tela só funciona enquanto não existe nenhum usuário. Depois, apague o segredo `SETUP_TOKEN` no GitHub e no projeto da Cloudflare.
 7. **Configurações (o próprio cliente faz).** O administrador entra → menu do nome → *Configurações*: veículo, logo (o painel propõe três paletas a partir dele), programa, dias e horários, blocos, linha editorial, região, portais regionais e horários das edições. Ao salvar, o painel se ajusta sozinho em 2 a 4 minutos.
 8. **Ligar as rotinas automáticas.** GitHub → Variables → `ATIVO` = `sim`. Antes disso, notícias e pauta só rodam pelos botões do painel, o que é bom para o período de teste.
 9. **Equipe.** Menu do nome → *Usuários* → crie cada pessoa com senha provisória. Ela troca a senha no primeiro acesso.
