@@ -1,0 +1,260 @@
+{
+ "date": "2026-10-20",
+ "generated": "2026-10-20T06:15:04-03:00",
+ "programa": "Conversa Timeline",
+ "titulo": "Lula promete abrir sigilos ao TSE sob pressão da CPMI sobre Lulinha, e reajuste do Bolsa Família feito em segredo chega às contas antes do segundo turno",
+ "abertura": "A cinco dias do segundo turno, Lula promete entregar hoje ao TSE a autorização para abrir os sigilos dele e dos cinco filhos, no mesmo momento em que o Congresso colhe assinaturas para uma CPMI sobre Lulinha e a lobista Roberta Luchsinger. O Bolsa Família reajustado em 15% cai na conta de todas as famílias até amanhã, depois de um decreto preparado em papel e sob sigilo. No STF, a PGR desmonta o pedido de Moraes para investigar André Mendonça, enquanto Zanin ouve as partes sobre a eleição já decidida no Rio. Fechamos com a PEC da Segurança engavetada até depois da eleição, a ofensiva da PF contra a internet do Comando Vermelho e o caos nas ruas da França.",
+ "agenda": [
+  {
+   "time": "Ao longo do dia",
+   "text": "Lula promete entregar ao presidente do TSE, Nunes Marques, a autorização para quebra dos sigilos bancário e telefônico dele e dos cinco filhos.",
+   "source": {"name": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-diz-que-levara-na-3a-feira-ao-tse-autorizacao-para-quebrar-sigilo/"}
+  },
+  {
+   "time": "Ao longo do dia",
+   "text": "Bolsa Família paga hoje o NIS final 2; amanhã (21) o pagamento é unificado para os finais 3 a 0, antes do segundo turno.",
+   "source": {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/pagamentos-de-outubro-do-bolsa-familia-comecam-nesta-segunda"}
+  },
+  {
+   "time": "Sessão do dia",
+   "text": "Alerj volta a discutir o projeto de renegociação de dívidas com o Estado do Rio, com descontos de até 70% em multas e juros.",
+   "source": {"name": "Diário do Rio", "url": "https://diariodorio.com/economia/2026/10/19/alerj-vota-projeto-que-muda-renegociacao-de-dividas-com-o-estado-do-rio.html"}
+  }
+ ],
+ "itens": [
+  {
+   "id": "sigilos-cpmi",
+   "bloco": "Política nacional",
+   "titulo": "Lula promete entregar ao TSE autorização para abrir sigilos dele e dos filhos",
+   "subtitulo": "Anúncio vem enquanto a oposição colhe assinaturas para CPMI sobre Lulinha e Roberta Luchsinger; faltavam 115 das 198 necessárias",
+   "resumo": "Lula anunciou em Porto Alegre que entrega nesta terça ao TSE a autorização para quebrar os sigilos bancário e telefônico dele e dos cinco filhos. O gesto chega depois de a lobista Roberta Luchsinger, que era amiga próxima de Lulinha, dizer que o filho do presidente se reunia com ministros. Promessa de transparência às vésperas da eleição custa pouco, e o que conta é a investigação que já existe sobre Lulinha. O Planalto mandou a base assinar a CPMI para não parecer que foge dela, o que mostra o tamanho do estrago. O eleitor tem o direito de saber quem frequentava a mansão do Lago Sul e por quê, antes de domingo.",
+   "contexto": [
+    "Lula fez o anúncio no dia 19, em ato em Porto Alegre, e desafiou Flávio Bolsonaro a fazer o mesmo; até agora a autorização não foi entregue.",
+    "Lulinha é investigado em três inquéritos da PF por suposto tráfico de influência e corrupção; a defesa nega irregularidades e diz que a relação com ministros era social.",
+    "Luchsinger citou encontros frequentes de Lulinha com Camilo Santana, Leonardo Barchini e Frederico de Siqueira Filho; MEC e Comunicações negam tratativas.",
+    "A PF rastreou em agosto depósito de R$ 249 mil de Luchsinger para o chefe de gabinete de Lula, Marco Aurélio Santana Ribeiro, que fala em empréstimo já quitado.",
+    "O pedido de CPMI da deputada Coronel Fernanda e da senadora Damares Alves tinha 83 assinaturas no dia 19; são necessárias 198."
+   ],
+   "angulo": [
+    "Abrir sigilo de última hora no TSE é peça de campanha; a apuração de verdade está nos inquéritos da PF e deve seguir sem blindagem.",
+    "A CPMI é instrumento legítimo do Congresso e precisa ser instalada com foco no que Luchsinger disse, sem virar palanque para mudar de assunto.",
+    "Se o próprio governo orienta a base a assinar, não há motivo para atrasar a instalação nem para diluir o objeto da comissão.",
+    "Ministro que frequentava a casa da lobista deve explicações públicas, independentemente do resultado de domingo."
+   ],
+   "perguntas": [
+    "A abertura de sigilos anunciada por Lula muda alguma coisa nas investigações que já correm sobre Lulinha?",
+    "Por que o Planalto decidiu apoiar uma CPMI que nasce para investigar o filho do presidente?",
+    "Que perguntas os ministros citados por Luchsinger precisam responder antes da eleição?"
+   ],
+   "atencao": "Lulinha e Luchsinger são investigados, sem denúncia nem condenação; as falas de Luchsinger não vieram acompanhadas de provas.",
+   "fontes": [
+    {"name": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/lula-anuncia-autorizacao-ao-tse-para-quebra-de-sigilos-dele-e-dos-filhos-e-desafia-flavio/"},
+    {"name": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/republica/trafico-influencia-relacoes-empresarios-roberta-pode-revelar-lula-filho/"},
+    {"name": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-diz-que-levara-na-3a-feira-ao-tse-autorizacao-para-quebrar-sigilo/"},
+    {"name": "Metrópoles", "url": "https://www.metropoles.com/colunas/grande-angular/senador-diz-que-pt-orienta-apoio-a-cpmi-de-luchsinger-nada-a-temer"},
+    {"name": "CNN Brasil", "url": "https://www.cnnbrasil.com.br/politica/advogado-de-lulinha-ele-nao-despachava-com-ministros-relacao-era-social/"}
+   ]
+  },
+  {
+   "id": "poderdata",
+   "bloco": "Política nacional",
+   "titulo": "PoderData mostra Flávio com 52% dos votos válidos contra 48% de Lula",
+   "subtitulo": "Vantagem de 4 pontos supera a margem de erro de 1,8 ponto; na rodada anterior, os dois estavam empatados",
+   "resumo": "Flávio Bolsonaro abriu 4 pontos sobre Lula na pesquisa PoderData/Aya, feita de 16 a 18 de outubro. O resultado desfaz o empate da rodada anterior e confirma a dianteira que o senador já tinha nas urnas do primeiro turno. A desaprovação de 50% ao governo pesa mais que a enxurrada de bondades anunciadas nas últimas semanas. Rejeição alta para quem está no poder há quase quatro anos é sinal claro de desgaste. Pesquisa não ganha eleição, e a reta final exige que o eleitor vá votar no domingo.",
+   "contexto": [
+    "PoderData/Aya: 3.000 entrevistas em 695 municípios, de 16 a 18 de outubro, margem de erro de 1,8 ponto, registro BR-02586/2026.",
+    "No primeiro turno, em 4 de outubro, Flávio teve 47,03% dos votos válidos e Lula, 45,16%.",
+    "48% dizem que não votariam de jeito nenhum em Lula; a rejeição a Flávio caiu de 45% para 44%.",
+    "50% desaprovam o governo e 45% aprovam.",
+    "Flávio tem 62% no Sul e 60% no Centro-Oeste; Lula tem 61% no Nordeste."
+   ],
+   "angulo": [
+    "O desgaste do governo resiste a reajuste de benefício, PIX para MEI e ônibus de graça no fim de semana: o eleitor percebe quando a bondade tem data marcada.",
+    "Metade do país desaprova o governo, e isso não se apaga em uma semana de propaganda.",
+    "A vantagem é real, mas pequena; o recado para quem quer mudança é comparecer no domingo."
+   ],
+   "perguntas": [
+    "O que explica a virada de um empate para 4 pontos de diferença em poucos dias?",
+    "As medidas anunciadas pelo governo na reta final ainda podem mudar o voto de alguém?",
+    "Qual o peso do Nordeste e do Sudeste na decisão de domingo?"
+   ],
+   "fontes": [
+    {"name": "Poder360", "url": "https://www.poder360.com.br/poderdata/flavio-reage-e-vai-a-52-contra-48-de-lula-diz-poderdata-aya/"}
+   ]
+  },
+  {
+   "id": "bolsa-familia",
+   "bloco": "Economia",
+   "titulo": "Governo preparou reajuste do Bolsa Família em um dia e fora do sistema eletrônico",
+   "subtitulo": "Aumento de 15% custa R$ 22,7 bilhões em 2027, e o pagamento de outubro foi antecipado para terminar antes do segundo turno",
+   "resumo": "Documentos obtidos por Lei de Acesso mostram que o reajuste do Bolsa Família foi montado em 16 de setembro, véspera do anúncio, em papel e longe do sistema eletrônico. O piso subiu de R$ 600 para R$ 691, e o pagamento de outubro foi unificado para terminar amanhã, quatro dias antes da eleição. Decisão de R$ 22,7 bilhões tomada às pressas e sob sigilo, a semanas do voto, merece explicação, e não só aplauso. O próprio governo admite que vai remanejar R$ 20 bilhões do Orçamento de 2027 sem dizer de onde sai o dinheiro. A proposta de Flávio de manter o benefício por dois anos para quem arrumar emprego mira a porta de saída, e não o corte que a campanha petista anuncia.",
+   "contexto": [
+    "Ofícios, notas técnicas e pareceres foram produzidos em 16 de setembro; o anúncio saiu no dia 17, a 17 dias do primeiro turno, e os papéis só entraram no processo eletrônico em 1º de outubro.",
+    "Correção de 15,04%: piso de R$ 600 para R$ 691; custo de R$ 5,8 bilhões em 2026 e R$ 22,7 bilhões em 2027.",
+    "O calendário original ia até 30 de outubro; agora todos recebem até 21 de outubro, sob a justificativa de proteger famílias do El Niño.",
+    "O Planejamento vai remanejar cerca de R$ 20 bilhões do Orçamento de 2027 e não detalhou quais despesas serão cortadas.",
+    "Daniella Marques, da campanha de Flávio, disse que quem conseguir emprego formal ou abrir empresa segue recebendo por dois anos, como na regra do governo Bolsonaro."
+   ],
+   "angulo": [
+    "Decreto bilionário feito em um dia, em papel e sob sigilo, é o oposto da transparência que o governo cobra dos adversários.",
+    "Antecipar o pagamento para antes da eleição e chamar isso de medida climática ofende a inteligência do eleitor.",
+    "Responsabilidade fiscal é dizer de onde sai o dinheiro; prometer remanejar R$ 20 bilhões sem apontar cortes empurra a conta para o próximo governo.",
+    "Regra de transição para quem consegue emprego protege a família e premia o trabalho; dizer que é fim do programa é distorcer a proposta."
+   ],
+   "perguntas": [
+    "Por que um reajuste desse tamanho precisou ser preparado em sigilo e fora do sistema eletrônico?",
+    "Quem vai pagar a conta de R$ 22,7 bilhões em 2027?",
+    "Uma regra de transição de dois anos ajuda o beneficiário a sair do programa pelo emprego?"
+   ],
+   "metafora": "É como reformar a casa inteira numa noite, sem planta e sem nota fiscal, e só mostrar os papéis duas semanas depois da festa de inauguração.",
+   "fontes": [
+    {"name": "Revista Oeste", "url": "https://revistaoeste.com/politica/governo-lula-preparou-reajuste-do-bolsa-familia-em-um-dia/"},
+    {"name": "CNN Brasil", "url": "https://www.cnnbrasil.com.br/eleicoes/bolsa-familia-tera-regra-de-transicao-de-dois-anos-diz-campanha-de-flavio/"},
+    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/pagamentos-de-outubro-do-bolsa-familia-comecam-nesta-segunda"},
+    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/governo-pretende-realocar-r-20-bilhoes-no-orcamento-de-2027"}
+   ]
+  },
+  {
+   "id": "pgr-mendonca",
+   "bloco": "STF e instituições",
+   "titulo": "PGR se manifesta contra pedido de Moraes para investigar André Mendonça",
+   "subtitulo": "Parecer de Gonet diz que relatórios da PF usados por Moraes não têm valor probatório; decisão cabe ao plenário do STF",
+   "resumo": "A Procuradoria-Geral da República disse ao presidente do STF, Edson Fachin, que não vê base para investigar André Mendonça por abuso de autoridade. O pedido partiu de Alexandre de Moraes depois que Mendonça tirou o sigilo de mensagens de Daniel Vorcaro, do Banco Master, enviadas a Moraes. Os relatórios usados como base trazem no cabeçalho, em caixa alta, o carimbo sem valor probatório. Um ministro tentar investigar o colega que expôs suas conversas é retrato do Judiciário que perdeu os próprios limites. O plenário tem agora a chance de encerrar o caso e mostrar que ninguém no tribunal está acima da regra.",
+   "contexto": [
+    "O parecer foi enviado a Fachin em 17 de outubro, assinado por Paulo Gonet e mais três integrantes da cúpula da PGR.",
+    "Moraes acusou Mendonça de abuso de autoridade e favorecimento a grupos políticos na relatoria dos casos Master e INSS.",
+    "Os relatórios da PF não são assinados e classificam as conclusões como de confiança baixa a moderada.",
+    "Fachin retirou a relatoria dos casos Master e INSS de Moraes e de Mendonça e assumiu os processos.",
+    "O julgamento foi adiado em 23 de setembro após pedido de vista de Flávio Dino; não há data para retomada."
+   ],
+   "angulo": [
+    "Relatório que se declara sem valor probatório não pode servir para investigar um ministro do Supremo; a PGR disse o óbvio.",
+    "O pedido de Moraes veio logo depois de Mendonça expor as mensagens de Vorcaro, e essa cronologia fala por si.",
+    "O STF precisa julgar Moraes e Mendonça com a mesma régua; blindagem seletiva corrói a confiança no tribunal."
+   ],
+   "perguntas": [
+    "Com o parecer da PGR, ainda há espaço para o plenário abrir investigação contra Mendonça?",
+    "O que as mensagens de Vorcaro a Moraes revelam e por que ainda não foram esclarecidas?",
+    "Quem fiscaliza um ministro do STF quando a disputa é entre os próprios ministros?"
+   ],
+   "metafora": "Usar um relatório carimbado como sem valor probatório para investigar um juiz é como multar um motorista com base na previsão do tempo.",
+   "fontes": [
+    {"name": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/republica/pgr-e-contra-pedido-de-moraes-para-investigar-mendonca/"},
+    {"name": "Poder360", "url": "https://www.poder360.com.br/poder-justica/pgr-rejeita-abuso-de-autoridade-em-conduta-de-mendonca-no-caso-master/"}
+   ]
+  },
+  {
+   "id": "zanin-rio",
+   "bloco": "STF e instituições",
+   "titulo": "Zanin dá cinco dias para PGR, AGU e TSE opinarem sobre pedido de segundo turno no Rio",
+   "subtitulo": "PSD de Eduardo Paes quer anular a vitória de Douglas Ruas, eleito com 50,88% após a retotalização sem os votos de Garotinho",
+   "resumo": "O ministro Cristiano Zanin abriu prazo de cinco dias para PGR, AGU e TSE se manifestarem na ação do PSD que pede segundo turno para o governo do Rio. O partido de Eduardo Paes quer derrubar a decisão do TSE que anulou os votos de Anthony Garotinho e recalculou o resultado. Com a conta refeita, Douglas Ruas passou de 49,27% para 50,88% dos votos válidos e foi declarado eleito. A regra que exclui voto de candidato com registro negado vale para todos e não pode mudar conforme o vencedor. O próprio Zanin já negou pedido parecido da campanha de Paes, e a segurança jurídica pede que o resultado seja respeitado.",
+   "contexto": [
+    "No primeiro turno, em 4 de outubro, Ruas teve 4.271.199 votos, Paes 3.706.984 e Garotinho 274.411.",
+    "Garotinho concorreu sub judice e desistiu do recurso em 5 de outubro, o que consolidou o impedimento.",
+    "Na retotalização, Ruas foi a 50,88% e Paes a 44,16% dos válidos.",
+    "O PSD diz que o segundo turno deve depender só do voto, e não de eventos processuais.",
+    "Ruas já iniciou a transição; a posse está marcada para 6 de janeiro de 2027."
+   ],
+   "angulo": [
+    "Voto em candidato barrado é voto anulado: essa é a regra conhecida antes da eleição, e Paes concorreu sabendo disso.",
+    "Tentar levar ao STF o que se perdeu no TSE prolonga a incerteza no estado e atrasa a transição.",
+    "O Supremo não deve ser terceiro turno de eleição estadual; respeitar o resultado é respeitar o eleitor fluminense."
+   ],
+   "perguntas": [
+    "Faz sentido contar votos de um candidato que teve o registro negado?",
+    "Que impacto a disputa judicial tem sobre a transição do governo do Rio?",
+    "Se o STF mudar a regra agora, o que acontece com outras eleições decididas da mesma forma?"
+   ],
+   "fontes": [
+    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/zanin-pede-parecer-da-pgr-e-agu-sobre-acao-do-psd-por-2-turno-no-rio"},
+    {"name": "SBT News", "url": "https://sbtnews.sbt.com.br/noticia/eleicoes/zanin-da-5-dias-para-tse-explicar-decisao-eleitoral-no-rj"}
+   ]
+  },
+  {
+   "id": "pec-seguranca",
+   "bloco": "Segurança pública",
+   "titulo": "Alcolumbre adia PEC da Segurança para depois da eleição sem acordo sobre maioridade penal",
+   "subtitulo": "Emenda do PT reduz a maioridade para 16 anos só em crimes hediondos; oposição quer 16 anos em todos os casos",
+   "resumo": "Davi Alcolumbre tirou a PEC da Segurança Pública da pauta do Senado e a votação ficou para depois do segundo turno. O impasse veio da redução da maioridade penal, que o PT resistiu por anos e agora tenta abraçar na reta final. Lula disse ao SBT que foi convencido a mudar de opinião e pediu a Camilo Santana uma emenda para crimes hediondos. Conversão de véspera de eleição, sem apoio nem da própria bancada, não convence quem convive com o crime todos os dias. A PEC também concentra poder no governo federal, e esse ponto merece tanto debate quanto a idade penal.",
+   "contexto": [
+    "Alcolumbre retirou a PEC da pauta em 15 de outubro, alegando que as emendas fariam o texto voltar à Câmara.",
+    "A emenda de Camilo Santana (PT-CE) reduz a maioridade de 18 para 16 anos em crimes hediondos, contra a posição da líder do governo, Teresa Leitão.",
+    "Rogério Marinho (PL-RN) propõe 16 anos em todos os casos e 14 em situações extremas.",
+    "A PEC centraliza no governo federal competências de combate ao crime e integra as forças de segurança.",
+    "Na mesma entrevista, Lula defendeu as saídas temporárias de presos como direito de convívio familiar."
+   ],
+   "angulo": [
+    "A redução da maioridade penal é bandeira antiga da direita; o PT só se mexeu quando a eleição apertou.",
+    "Quem defende saidinha de preso na mesma entrevista não tem credibilidade para posar de linha dura.",
+    "Segurança pública se faz com estados fortes e punição efetiva, e não com centralização em Brasília."
+   ],
+   "perguntas": [
+    "A mudança de posição de Lula sobre a maioridade penal é convicção ou cálculo eleitoral?",
+    "Reduzir a maioridade só para crimes hediondos resolve ou é meia medida?",
+    "Centralizar a segurança no governo federal tira poder dos governadores?"
+   ],
+   "fontes": [
+    {"name": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-diz-que-foi-convencido-a-mudar-opiniao-sobre-maioridade-penal/"},
+    {"name": "SBT News", "url": "https://sbtnews.sbt.com.br/noticia/politica/com-bate-cabeca-no-pt-alcolumbre-adia-pec-da-seguranca"}
+   ]
+  },
+  {
+   "id": "backbone-cv",
+   "bloco": "Segurança pública",
+   "titulo": "PF prende mulher e filho de Marcinho VP em operação contra internet do Comando Vermelho",
+   "subtitulo": "Operação Backbone bloqueia até R$ 558 milhões de 40 pessoas e 42 empresas no Rio",
+   "resumo": "A Polícia Federal prendeu Márcia Gama Nepomuceno, mulher de Marcinho VP e mãe do rapper Oruam, e o filho Lucas na Operação Backbone. Segundo a PF, a facção impõe monopólio de internet no Alemão, na Penha, no Chapadão e em outros bairros da Zona Norte do Rio. Provedores, produtoras de eventos e empresas de fachada serviriam para lavar o dinheiro do tráfico. Quem paga a conta é o morador, obrigado a contratar o serviço do crime e sem direito de escolha. Asfixiar o caixa da facção é o caminho certo, e o Estado precisa ocupar esse espaço com serviço legal.",
+   "contexto": [
+    "Foram expedidos 23 mandados de prisão e 24 de busca; até o início da tarde do dia 19, a PF tinha cumprido 20 prisões.",
+    "A Justiça bloqueou até R$ 558 milhões de 40 pessoas e 42 empresas e suspendeu as atividades das companhias.",
+    "Os alvos estavam no Rio, em Nova Iguaçu, São João de Meriti, Magé, Teresópolis e Maricá.",
+    "Marcinho VP cumpre pena no presídio federal de Campo Grande e completou 30 anos de prisão em 2026.",
+    "A defesa de Márcia diz que ela não tem envolvimento com as empresas investigadas e que suas firmas são legais."
+   ],
+   "angulo": [
+    "O crime organizado virou empresa de serviços e cobra pedágio do morador até pela internet; isso é controle territorial.",
+    "Seguir o dinheiro funciona: bloquear meio bilhão de reais dói mais na facção do que qualquer discurso.",
+    "Sem polícia presente e serviço legal nas comunidades, o vazio volta a ser ocupado pelo tráfico."
+   ],
+   "perguntas": [
+    "Como uma facção consegue controlar a internet de bairros inteiros sem ser incomodada por anos?",
+    "Bloquear bens e empresas é mais eficaz do que prender a linha de frente do tráfico?",
+    "O que o morador da Zona Norte pode esperar depois da operação?"
+   ],
+   "atencao": "Márcia e Lucas foram presos, mas não há condenação; usar sempre segundo a PF e investigados.",
+   "fontes": [
+    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/mulher-e-filho-de-marcinho-vp-sao-presos-em-operacao-da-pf-no-rio"},
+    {"name": "Jovem Pan", "url": "https://jovempan.com.br/noticias/brasil/entenda-as-investigacoes-contra-o-rapper-oruam-e-sua-familia.html"}
+   ]
+  },
+  {
+   "id": "franca-saques",
+   "bloco": "Internacional",
+   "titulo": "França adota toques de recolher após fim de semana com 2,4 mil presos e 3 mil lojas atingidas",
+   "subtitulo": "Premiê Lecornu não descarta estado de emergência e culpa grupos de extrema-esquerda; quase mil policiais ficaram feridos",
+   "resumo": "O governo francês pediu toques de recolher locais depois de um fim de semana de saques e confrontos nas principais cidades. Os protestos começaram em escolas em setembro, se juntaram a atos contra o custo de vida e terminaram com cerca de 2,4 mil presos. O primeiro-ministro Sébastien Lecornu atribuiu parte dos piores distúrbios a grupos de extrema-esquerda e não descarta estado de emergência. O ministro do Interior admitiu que a polícia perdeu o controle em algumas cidades. É o retrato de um Estado que deixou a ordem pública em segundo plano e agora paga o preço.",
+   "contexto": [
+    "Quase 3 mil estabelecimentos foram atingidos; o Carrefour teve 50 unidades danificadas e 19 mercados saqueados.",
+    "Quase mil policiais ficaram feridos e um manifestante morreu de parada cardíaca no sábado.",
+    "Até 8 de outubro, 6,8 mil pessoas tinham sido detidas, 86% delas menores de idade.",
+    "Macron recusou a renúncia do ministro do Interior, Laurent Nuñez, e mandou revisar as falhas de inteligência.",
+    "A França vai às urnas para presidente em cerca de seis meses, com economia fraca e dívida em alta."
+   ],
+   "angulo": [
+    "Saquear lojas e incendiar escolas não é protesto, é crime, e o Estado tem o dever de proteger o comerciante.",
+    "Quando a autoridade hesita, a desordem avança; a França mostra o custo de tolerar a baderna por semanas.",
+    "O Brasil deve olhar para o exemplo e não romantizar a violência travestida de causa social."
+   ],
+   "perguntas": [
+    "Como protestos que começaram em escolas viraram saques em todo o país?",
+    "O governo francês demorou a agir?",
+    "Que lição a crise francesa deixa para a segurança pública no Brasil?"
+   ],
+   "fontes": [
+    {"name": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/mundo/como-protestos-de-estudantes-descambaram-para-violencia-e-saques-na-franca/"},
+    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/internacional/noticia/2026-10/franca-quer-impor-toques-de-recolher-apos-fim-de-semana-com-tumultos"}
+   ]
+  }
+ ]
+}
