@@ -245,7 +245,16 @@ footer{color:var(--muted);font-size:12px;border-top:1px solid var(--border);padd
 .prog-h h2{font:700 26px/1.12 Fraunces,Georgia,serif;margin:2px 0 0;letter-spacing:-.01em}
 .abert{font-size:15.5px;line-height:1.6;color:var(--text);margin:10px 0 0}
 .indice{display:grid;gap:6px;margin-top:14px}
-.indice a{display:grid;grid-template-columns:28px 150px 1fr;gap:10px;align-items:baseline;text-decoration:none;color:var(--text);padding:8px 0;border-top:1px solid var(--border)}
+.indice .irow{display:flex;align-items:center;gap:8px;border-top:1px solid var(--border)}
+.indice a{flex:1;min-width:0;display:grid;grid-template-columns:28px 150px 1fr;gap:10px;align-items:baseline;text-decoration:none;color:var(--text);padding:8px 0}
+.mvs{display:inline-flex;gap:4px;flex-shrink:0}
+.mv{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.mv:hover:not(:disabled){color:var(--text);border-color:var(--text-2)}
+.mv:disabled{opacity:.3;cursor:default}
+.mv svg{width:16px;height:16px}
+.it.movido{animation:mov .6s ease}
+@keyframes mov{from{background:color-mix(in srgb,var(--warn) 14%,transparent)}to{background:transparent}}
+.ordbar{display:flex;align-items:center;gap:10px;margin:10px 0 0;font-size:13px;color:var(--text-2)}
 .num{display:inline-block;background:var(--acento,#a63922);color:#fff;font:800 13px/1.6 Inter,sans-serif;text-align:center;border-radius:6px;min-width:26px}
 .bl{font:700 11px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#c4672a}
 .it{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;margin-top:14px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:80px}
@@ -287,9 +296,10 @@ h3 .pill.nov{display:inline-block;vertical-align:3px;margin-right:8px;cursor:hel
 @media (max-width:900px){.cols2{grid-template-columns:1fr}.wk{grid-template-columns:repeat(4,minmax(0,1fr))}.indice a{grid-template-columns:28px 1fr}.indice a .bl{display:none}}
 @media (max-width:560px){.wk{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .tl-btn{border:1px solid color-mix(in srgb,var(--good) 45%,transparent);cursor:pointer;font:inherit;font-size:inherit;font-weight:700}.tl-btn:hover{background:var(--good);color:#fff}
-.xbtn{margin-left:auto;background:transparent;border:1px solid transparent;color:var(--muted);border-radius:8px;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.xbtn{background:transparent;border:1px solid transparent;color:var(--muted);border-radius:8px;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 .xbtn:hover{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,transparent);background:var(--bad-bg)}
 .xbtn svg{width:15px;height:15px}
+.pills .mvs{margin-left:auto}
 .xbtn:disabled{opacity:.5;cursor:wait}
 </style>
 <link rel="stylesheet" href="estilo.css">
@@ -370,20 +380,46 @@ document.addEventListener("click",async e=>{const b=e.target.closest(".xbtn");if
   xset(XK(d,ti));const art=b.closest("article");if(art){art.style.transition="opacity .25s";art.style.opacity="0";setTimeout(()=>loadP(P_CUR),260)}
   toast("Item excluído. O PDF é refeito em 1 a 2 minutos.")});
 
+/* ordem dos itens: subir e descer. Muda na tela na hora e salva sozinho alguns segundos depois. */
+const UP=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>`;
+const DN=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>`;
+const OK_=d=>`pord:${d}`,oget=d=>{try{return JSON.parse(localStorage.getItem(OK_(d))||"null")}catch(e){return null}},oset=(d,v)=>{try{v?localStorage.setItem(OK_(d),JSON.stringify(v)):localStorage.removeItem(OK_(d))}catch(e){}};
+let PD=null,ORD_T=null;
+const mvb=(k,n,t)=>`<span class="mvs"><button type="button" class="mv" data-mv="-1" data-k="${k}" aria-label="Subir: ${esc(t)}" title="Subir" ${k===0?"disabled":""}>${UP}</button><button type="button" class="mv" data-mv="1" data-k="${k}" aria-label="Descer: ${esc(t)}" title="Descer" ${k===n-1?"disabled":""}>${DN}</button></span>`;
+function ordena(itens,ordem){if(!ordem)return itens;const pos=new Map(ordem.map((t,i)=>[t,i]));let ult=-1;
+  return itens.map((x,i)=>{const t=String(x.titulo||"").trim();if(pos.has(t)){ult=pos.get(t);return[ult,0,i,x]}return[ult,1,i,x]}).sort((a,b)=>a[0]-b[0]||a[1]-b[1]||a[2]-b[2]).map(a=>a[3])}
+document.addEventListener("click",e=>{const b=e.target.closest(".mv");if(!b||!PD)return;e.preventDefault();
+  const k=+b.dataset.k,j=k+(+b.dataset.mv),L=PD.vis.map(x=>String(x.titulo||"").trim());if(j<0||j>=L.length)return;
+  [L[k],L[j]]=[L[j],L[k]];oset(PD.d,{ordem:L,em:Date.now(),salvo:false});const noIndice=!!b.closest(".indice");renderP(L[j],noIndice);
+  $("#ord-st").textContent="Nova ordem: salvando em instantes…";clearTimeout(ORD_T);ORD_T=setTimeout(()=>salvaOrdem(PD.d),2500)});
+async function salvaOrdem(d){const o=oget(d);if(!o||o.salvo)return;const st=$("#ord-st");
+  try{st.textContent="Salvando a nova ordem…";await Painel.call("/acao",{job:"ordem",payload:{data:d,ordem:o.ordem}});oset(d,{...o,salvo:true});
+    st.textContent="Ordem salva. O PDF é refeito em 1 a 2 minutos."}catch(err){st.textContent="Não salvou a ordem: "+err.message+" Mova de novo para tentar."}}
+addEventListener("beforeunload",()=>{const o=PD&&oget(PD.d);if(o&&!o.salvo){clearTimeout(ORD_T);salvaOrdem(PD.d)}});
+
 /* pauta */
 async function pdfLink(d,prog){const a=$("#pdf");a.href=`programa-pdf.html?d=${d}`;a.removeAttribute("download");
   try{const r=await fetch(`programa/${d}.pdf`,{method:"HEAD",cache:"no-store"});if(r.ok){a.href=`programa/${d}.pdf`;a.setAttribute("download",`Pauta-${String(prog||"programa").replace(/\s+/g,"-")}-${d}.pdf`)}}catch(e){}}
 async function loadP(d){
-  P_CUR=d;$("#p-day").value=d;const i=P_DAYS.indexOf(d);$("#p-prev").disabled=i<=0;$("#p-next").disabled=i>=P_DAYS.length-1;CLIP=[];
+  P_CUR=d;$("#p-day").value=d;const i=P_DAYS.indexOf(d);$("#p-prev").disabled=i<=0;$("#p-next").disabled=i>=P_DAYS.length-1;
   try{const p=await nocache(`programa/${d}.json`).then(r=>r.json());window._pg=[p.generated,p.atualizado].filter(Boolean).sort().pop();
-    const dt=new Date(p.date+"T12:00:00"),it=(p.itens||[]).filter(x=>!xget(XK(d,x.titulo)));
-    $("#p-body").innerHTML=`<div class="card">
+    // ordem pedida aqui e ainda não publicada: mantém na tela; some quando o arquivo publicado já estiver nela
+    const o=oget(d),srv=(p.itens||[]).map(x=>String(x.titulo||"").trim());
+    if(o&&(Date.now()-o.em>30*60e3||JSON.stringify(srv.filter(t=>o.ordem.includes(t)))===JSON.stringify(o.ordem.filter(t=>srv.includes(t)))))oset(d,null);
+    PD={d,p,vis:[]};renderP();pdfLink(d,p.programa);history.replaceState(null,"","#"+d);updHero();
+  }catch(e){$("#p-body").innerHTML=`<div class="empty">Não foi possível carregar a pauta de ${dBR(d)}.</div>`}
+}
+function renderP(foco,noIndice){
+  const {d,p}=PD;CLIP=[];const o=oget(d);
+  const dt=new Date(p.date+"T12:00:00"),it=ordena((p.itens||[]).filter(x=>!xget(XK(d,x.titulo))),o&&o.ordem);PD.vis=it;const n=it.length;
+  $("#p-body").innerHTML=`<div class="card">
       <div class="prog-h"><div><div class="eb">${esc(p.programa||Painel.cliente.programa||"")} · ${WD[dt.getDay()]}, ${dBR(p.date)}</div><h2>${esc(p.titulo||"")}</h2></div></div>
       <p class="abert">${esc(p.abertura||"")}</p>
-      <div class="indice">${it.map((x,k)=>`<a href="#it-${k}"><span class="num">${k+1}</span><span class="bl">${esc(x.bloco)}</span><span>${esc(x.titulo)}${(x.avulsa||x.pedido)?` <span class="seal">Pauta avulsa</span>`:""}</span></a>`).join("")}</div></div>
+      <div class="indice">${it.map((x,k)=>`<div class="irow"><a href="#it-${k}"><span class="num">${k+1}</span><span class="bl">${esc(x.bloco)}</span><span>${esc(x.titulo)}${(x.avulsa||x.pedido)?` <span class="seal">Pauta avulsa</span>`:""}</span></a>${mvb(k,n,x.titulo)}</div>`).join("")}</div>
+      <div class="ordbar"><span id="ord-st" role="status">${o&&!o.salvo?"Nova ordem: salvando em instantes…":o&&o.salvo?"Ordem salva. O PDF é refeito em 1 a 2 minutos.":"Use as setas para mudar a ordem dos itens."}</span></div></div>
       ${(p.agenda||[]).length?`<div class="card" style="margin-top:14px"><div class="blk-h"><span>Com hora marcada</span></div>${p.agenda.map(a=>`<div class="ag"><b>${esc(a.time)}</b><span>${esc(a.text)} ${a.source?`<a href="${esc(a.source.url)}" target="_blank" rel="noopener">${esc(a.source.name)} ↗</a>`:""}</span></div>`).join("")}</div>`:""}
-      ${it.map((x,k)=>`<article class="it" id="it-${k}">
-        <div class="pills"><span class="num">${k+1}</span><span class="bl" style="align-self:center">${esc(x.bloco)}</span>${(x.avulsa||x.pedido)?`<span class="seal">Pauta avulsa</span>`:""}${xbtn(d,x.titulo)}</div>
+      ${it.map((x,k)=>`<article class="it${foco&&String(x.titulo).trim()===foco?" movido":""}" id="it-${k}">
+        <div class="pills"><span class="num">${k+1}</span><span class="bl" style="align-self:center">${esc(x.bloco)}</span>${(x.avulsa||x.pedido)?`<span class="seal">Pauta avulsa</span>`:""}${mvb(k,n,x.titulo)}${xbtn(d,x.titulo)}</div>
         <h3>${esc(x.titulo)}</h3>${x.subtitulo?`<p class="sub">${esc(x.subtitulo)}</p>`:""}
         <p class="res">${esc(x.resumo)}</p>
         ${x.metafora?`<div class="meta"><b>Para explicar no ar</b><p>${esc(x.metafora)}</p></div>`:""}
@@ -391,8 +427,7 @@ async function loadP(d){
         ${(x.perguntas||[]).length?block("Perguntas para a conversa",`<ol>${x.perguntas.map(q=>`<li>${esc(q)}</li>`).join("")}</ol>`,x.perguntas.join("\n")):""}
         ${x.atencao?`<div class="note"><b>Atenção:</b> ${esc(x.atencao)}</div>`:""}
         <div class="src">${srcs(x.fontes)}</div></article>`).join("")}`;
-    pdfLink(d,p.programa);history.replaceState(null,"","#"+d);updHero();
-  }catch(e){$("#p-body").innerHTML=`<div class="empty">Não foi possível carregar a pauta de ${dBR(d)}.</div>`}
+  if(foco&&!noIndice){const k=it.findIndex(x=>String(x.titulo).trim()===foco);const el=document.getElementById("it-"+k);if(el)el.scrollIntoView({block:"nearest"})}
 }
 function fillSel(sel,days){sel.innerHTML=days.slice().reverse().map(d=>{const x=new Date(d+"T12:00:00");return`<option value="${d}">${WD[x.getDay()].slice(0,3)} ${dBR(d)}</option>`}).join("")}
 Painel.pronto.then(async()=>{

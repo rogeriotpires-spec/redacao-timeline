@@ -46,7 +46,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python3 tools/esperar.py programa.yml programa-avulso.yml pauta-excluir.yml
+          python3 tools/esperar.py programa.yml programa-avulso.yml pauta-excluir.yml pauta-ordem.yml
           git pull -q --ff-only origin main || git reset -q --hard origin/main
       - name: Ler o pedido
         run: |

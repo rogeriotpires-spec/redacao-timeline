@@ -2,13 +2,13 @@
 import { json } from "../../lib/auth.js";
 import { leJson } from "../../lib/github.js";
 import { limites, usoDoMes, mesBR } from "../../lib/plano.js";
-const JOBS = { noticias: "noticias.yml", programa: "programa.yml", avulso: "programa-avulso.yml", excluir: "pauta-excluir.yml" };
+const JOBS = { noticias: "noticias.yml", programa: "programa.yml", avulso: "programa-avulso.yml", excluir: "pauta-excluir.yml", ordem: "pauta-ordem.yml" };
 const gh = (env, path, init = {}) => fetch(`${env.GH_API || "https://api.github.com"}/repos/${env.GH_REPO}${path}`, { ...init, headers: { Authorization: `Bearer ${env.GH_TOKEN}`, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "redacao-inteligente", "Content-Type": "application/json" } });
 export async function onRequestPost({ request, env, data }) {
   const b = await request.json().catch(() => ({})), wf = JOBS[b.job];
   if (!wf) return json({ error: "Ação desconhecida." }, 400);
   // controle da geração (aba Consumo) e limites do plano: barram já aqui, com aviso claro
-  if (b.job !== "excluir") {
+  if (b.job !== "excluir" && b.job !== "ordem") {
     const c = (await leJson(env, "controle.json", {}).catch(() => ({ dados: {} }))).dados || {};
     if (c.estado === "pausado") return json({ error: "A geração está pausada pelo administrador (aba Consumo)." }, 423);
     const h = (await leJson(env, "historico/consumo.json", { execucoes: [] }).catch(() => ({ dados: { execucoes: [] } }))).dados;
@@ -27,6 +27,10 @@ export async function onRequestPost({ request, env, data }) {
     const p = b.payload || {};
     if (!/^\d{4}-\d{2}-\d{2}$/.test(p.data || "") || !String(p.pedido || "").trim()) return json({ error: "Informe a data e o assunto." }, 400);
     inputs = { payload: JSON.stringify({ data: p.data, pedido: String(p.pedido).slice(0, 1500), obs: String(p.obs || "").slice(0, 1500), usuario: data.usuario.login }) };
+  } else if (b.job === "ordem") {
+    const p = b.payload || {}, ordem = (Array.isArray(p.ordem) ? p.ordem : []).map(t => String(t).slice(0, 300)).filter(Boolean).slice(0, 40);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(p.data || "") || !ordem.length) return json({ error: "Ordem inválida." }, 400);
+    inputs = { payload: JSON.stringify({ data: p.data, ordem, usuario: data.usuario.login }) };
   } else if (b.job === "excluir") {
     const p = b.payload || {};
     if (!/^\d{4}-\d{2}-\d{2}$/.test(p.data || "") || !String(p.titulo || "").trim()) return json({ error: "Item inválido." }, 400);

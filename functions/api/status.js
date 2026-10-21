@@ -1,6 +1,6 @@
 // Situação da última execução de uma rotina (para a página acompanhar o andamento).
 import { json } from "../../lib/auth.js";
-const OK = new Set(["noticias.yml", "programa.yml", "programa-avulso.yml", "pauta-excluir.yml", "configurar.yml", "publicar.yml"]);
+const OK = new Set(["noticias.yml", "programa.yml", "programa-avulso.yml", "pauta-excluir.yml", "pauta-ordem.yml", "configurar.yml", "publicar.yml"]);
 export async function onRequestGet({ request, env }) {
   const wf = new URL(request.url).searchParams.get("wf");
   if (!OK.has(wf)) return json({ error: "Rotina desconhecida." }, 400);

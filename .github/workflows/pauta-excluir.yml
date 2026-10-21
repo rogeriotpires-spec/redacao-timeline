@@ -24,7 +24,7 @@ jobs:
       - name: Marcar o início
         run: echo "INICIO=$(date -u +%FT%TZ)" >> "$GITHUB_ENV"
       - name: Esperar a vez (outra ação mexendo no mesmo arquivo)
-        run: python3 tools/esperar.py programa.yml programa-avulso.yml pauta-excluir.yml
+        run: python3 tools/esperar.py programa.yml programa-avulso.yml pauta-excluir.yml pauta-ordem.yml
       - name: Excluir e publicar no repositório
         run: |
           git config user.name "github-actions[bot]"
