@@ -49,6 +49,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Coletar os assuntos em alta no X
         run: python3 tools/coleta_trends.py || true
+      - name: Instalar o Scrapling (leitura direta dos feeds)
+        run: pip install --quiet "scrapling[fetchers]" || echo "::warning::Scrapling não instalou; a coleta usa só o Google Notícias"
       - name: Coletar manchetes de todos os portais
         run: |
           python3 tools/coleta_noticias.py 12 > coleta-noticias.json 2>/tmp/col.txt || echo '{"portais":[]}' > coleta-noticias.json

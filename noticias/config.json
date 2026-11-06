@@ -103,7 +103,8 @@
    "name": "Folha de S.Paulo",
    "url": "https://www.folha.uol.com.br",
    "camp": "centro-esquerda",
-   "tier": 1
+   "tier": 1,
+   "feed": "https://feeds.folha.uol.com.br/emcimadahora/rss091.xml"
   },
   {
    "name": "Estadão",
@@ -121,19 +122,22 @@
    "name": "CNN Brasil",
    "url": "https://www.cnnbrasil.com.br",
    "camp": "centro",
-   "tier": 1
+   "tier": 1,
+   "feed": "https://www.cnnbrasil.com.br/feed/"
   },
   {
    "name": "Poder360",
    "url": "https://www.poder360.com.br",
    "camp": "centro",
-   "tier": 1
+   "tier": 1,
+   "feed": "https://www.poder360.com.br/feed/"
   },
   {
    "name": "Metrópoles",
    "url": "https://www.metropoles.com",
    "camp": "centro",
-   "tier": 1
+   "tier": 1,
+   "feed": "https://www.metropoles.com/feed"
   },
   {
    "name": "Valor Econômico",
@@ -151,7 +155,8 @@
    "name": "Agência Brasil",
    "url": "https://agenciabrasil.ebc.com.br",
    "camp": "estatal",
-   "tier": 2
+   "tier": 2,
+   "feed": "https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml"
   },
   {
    "name": "CartaCapital",
@@ -175,19 +180,22 @@
    "name": "Gazeta do Povo",
    "url": "https://www.gazetadopovo.com.br",
    "camp": "direita",
-   "tier": 1
+   "tier": 1,
+   "feed": "https://www.gazetadopovo.com.br/feed/rss/republica.xml"
   },
   {
    "name": "Revista Oeste",
    "url": "https://revistaoeste.com",
    "camp": "direita",
-   "tier": 1
+   "tier": 1,
+   "feed": "https://revistaoeste.com/feed/"
   },
   {
    "name": "Jovem Pan",
    "url": "https://jovempan.com.br",
    "camp": "direita",
-   "tier": 1
+   "tier": 1,
+   "feed": "https://jovempan.com.br/feed"
   },
   {
    "name": "Pleno.News",
@@ -205,7 +213,8 @@
    "name": "O Antagonista",
    "url": "https://oantagonista.com.br",
    "camp": "centro-direita",
-   "tier": 2
+   "tier": 2,
+   "feed": "https://oantagonista.com.br/feed/"
   },
   {
    "name": "BBC News Brasil",
