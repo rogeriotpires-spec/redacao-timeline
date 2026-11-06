@@ -21,11 +21,11 @@ for o in cfg["outlets"]:
     d = dominio(o["url"]); q = f"site:{d} when:{max(1, round(horas/24)) if horas >= 24 else str(horas) + 'h'}"
     url = "https://news.google.com/rss/search?" + urllib.parse.urlencode({"q": q, "hl": "pt-BR", "gl": "BR", "ceid": "BR:pt-419"})
     itens, erro, via = [], None, "google"
-    if o.get("feed"):
-        diretos = feeds_diretos.ler(o["feed"], corte, BRT, agora)
-        if diretos:
-            saida["portais"].append({"nome": o["name"], "camp": o.get("camp"), "tier": o.get("tier"), "dominio": d, "via": "feed", "manchetes": diretos})
-            continue
+    # feed direto primeiro (mais rápido e com título completo); o Google completa até 25, sem repetir
+    diretos = feeds_diretos.ler(o["feed"], corte, BRT, agora) if o.get("feed") else None
+    if diretos:
+        itens, via = list(diretos), "feed"
+        vistos_feed = {m["titulo"].lower()[:70] for m in itens}
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (redacao)"})
         root = ET.fromstring(urllib.request.urlopen(req, timeout=20).read())
@@ -35,10 +35,11 @@ for o in cfg["outlets"]:
             try: dt = parsedate_to_datetime(it.findtext("pubDate")).astimezone(BRT)
             except Exception: dt = None
             if dt and dt < corte: continue
-            itens.append({"titulo": t, "quando": dt.strftime("%d/%m %H:%M") if dt else "", "link": it.findtext("link")})
             if len(itens) >= 25: break
+            if diretos and t.lower()[:70] in vistos_feed: continue
+            itens.append({"titulo": t, "quando": dt.strftime("%d/%m %H:%M") if dt else "", "link": it.findtext("link")})
     except Exception as e:
-        erro = str(e)[:120]
+        erro = None if diretos else str(e)[:120]
     saida["portais"].append({"nome": o["name"], "camp": o.get("camp"), "tier": o.get("tier"), "dominio": d, "via": via, "manchetes": itens, **({"erro": erro} if erro else {})})
     time.sleep(0.6)
 # buscas por tema (todos os veículos brasileiros), para os blocos que costumam ficar vazios
